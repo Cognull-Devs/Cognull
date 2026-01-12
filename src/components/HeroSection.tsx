@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Sparkles } from "lucide-react";
-import cognullLogo from "@/assets/cognull-logo.png";
+import cognullLogo from "@/assets/cognull2.png";
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -52,7 +52,7 @@ const HeroSection = () => {
             <img
               src={cognullLogo}
               alt="Cognull"
-              className="w-40 h-40 md:w-56 md:h-56 object-contain animate-float glow-mixed rounded-3xl"
+              className="w-48 h-48 md:w-64 md:h-64 object-contain animate-float glow-mixed rounded-[2rem]"
             />
           </div>
 
