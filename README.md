@@ -1,73 +1,157 @@
-# Welcome to your Lovable project
+# Cognull - Plataforma de Desenvolvimento
 
-## Project info
+> Transformando ideias em soluções digitais inteligentes
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 📋 Sobre o Projeto
 
-## How can I edit this code?
+Site institucional da **Cognull**, empresa de desenvolvimento de software especializada em criar soluções digitais sob medida. O projeto apresenta nossos serviços, diferenciais, equipe e portfólio de forma moderna e interativa.
 
-There are several ways of editing your application.
+## ✨ Funcionalidades
 
-**Use Lovable**
+- 🎨 Design moderno com animações fluidas
+- 📱 Totalmente responsivo (mobile-first)
+- 🌙 Otimizado para performance
+- 📧 Formulário de contato integrado com EmailJS
+- 🔗 Links sociais da equipe (LinkedIn, GitHub, Email)
+- ⚡ Navegação suave entre seções
+- 🎯 SEO otimizado
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🚀 Tecnologias
 
-Changes made via Lovable will be committed automatically to this repo.
+Este projeto foi construído com as seguintes tecnologias:
 
-**Use your preferred IDE**
+- **[Vite](https://vitejs.dev/)** - Build tool ultra-rápida
+- **[React](https://react.dev/)** - Biblioteca para interfaces
+- **[TypeScript](https://www.typescriptlang.org/)** - JavaScript com tipagem
+- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utility-first
+- **[shadcn/ui](https://ui.shadcn.com/)** - Componentes UI reutilizáveis
+- **[EmailJS](https://www.emailjs.com/)** - Serviço de envio de emails
+- **[Lucide React](https://lucide.dev/)** - Ícones modernos
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Instalação e Uso
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Pré-requisitos
 
-Follow these steps:
+- Node.js 18+ e npm instalados
+- Git
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Passo a passo
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/Cognull-Plataforma.git
 
-# Step 3: Install the necessary dependencies.
-npm i
+# 2. Entre na pasta do projeto
+cd Cognull-Plataforma
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 3. Instale as dependências
+npm install
+
+# 4. Configure as variáveis de ambiente (opcional)
+cp .env.example .env.local
+# Edite o .env.local com suas credenciais do EmailJS
+
+# 5. Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+O site estará disponível em `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📧 Configuração do EmailJS
 
-**Use GitHub Codespaces**
+Para ativar o envio de emails pelo formulário de contato:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Crie uma conta em [EmailJS](https://www.emailjs.com/)
+2. Configure um serviço de email (Gmail recomendado)
+3. Crie um template de email
+4. Obtenha suas credenciais (Service ID, Template ID, Public Key)
+5. Adicione no arquivo `.env.local`:
 
-## What technologies are used for this project?
+```env
+VITE_EMAILJS_SERVICE_ID=seu_service_id
+VITE_EMAILJS_TEMPLATE_ID=seu_template_id
+VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+```
 
-This project is built with:
+Documentação completa: [EMAILJS_SETUP.md](./EMAILJS_SETUP.md)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📦 Build para Produção
 
-## How can I deploy this project?
+```bash
+# Gerar build otimizado
+npm run build
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+# Preview do build
+npm run preview
+```
 
-## Can I connect a custom domain to my Lovable project?
+Os arquivos otimizados estarão na pasta `dist/`
 
-Yes, you can!
+## 🚀 Deploy
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Recomendamos as seguintes plataformas para deploy:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Vercel (Recomendado)
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+```bash
+npm install -g netlify-cli
+netlify deploy --prod
+```
+
+### Outras opções
+- GitHub Pages
+- Cloudflare Pages
+- Railway
+- Render
+
+## 📂 Estrutura do Projeto
+
+```
+Cognull-Plataforma/
+├── public/              # Arquivos estáticos
+│   ├── favicon.ico      # Ícone do site
+│   └── robots.txt       # SEO
+├── src/
+│   ├── components/      # Componentes React
+│   │   ├── ui/         # Componentes shadcn/ui
+│   │   ├── Header.tsx
+│   │   ├── HeroSection.tsx
+│   │   ├── ServicesSection.tsx
+│   │   ├── AboutSection.tsx
+│   │   ├── DifferentialsSection.tsx
+│   │   ├── TeamSection.tsx
+│   │   ├── ContactSection.tsx
+│   │   └── Footer.tsx
+│   ├── pages/          # Páginas
+│   ├── hooks/          # Custom hooks
+│   ├── lib/            # Utilitários
+│   ├── App.tsx         # Componente principal
+│   └── main.tsx        # Entry point
+├── .env.local          # Variáveis de ambiente (não commitado)
+└── package.json        # Dependências
+```
+
+## 👥 Equipe
+
+- **Nicolas Marrai Alves Feitosa** - Co-founder | Backend & Arquitetura
+- **Lucca Pontes Menezes** - Co-founder | Frontend & UI/UX
+- **Cauã Sarraf Ferri** - Co-founder | Integrações & Automações
+
+## 📄 Licença
+
+Este projeto é propriedade da **Cognull** e todos os direitos são reservados.
+
+## 📞 Contato
+
+- 🌐 Website: [em breve]
+- 📧 Email: cognull.Dev@gmail.com
+- 💼 LinkedIn: [Cognull](https://www.linkedin.com/company/cognull)
+
+---
+
+Desenvolvido com ❤️ pela equipe **Cognull**
