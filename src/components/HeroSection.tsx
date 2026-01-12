@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Sparkles } from "lucide-react";
-import cognullLogo from "@/assets/cognull2.png";
+import cognullLogo from "@/assets/cognull1.png";
 
 const HeroSection = () => {
   const scrollToContact = () => {
