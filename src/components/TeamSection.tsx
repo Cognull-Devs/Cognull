@@ -4,7 +4,7 @@ import { useState } from "react";
 const team = [
   {
     name: "Nicolas Marrai Alves Feitosa",
-    role: "Co-founder",
+    role: "Fundador",
     description: "Especialista em arquitetura de sistemas e desenvolvimento backend, com foco em soluções escaláveis e performance.",
     gradient: "from-cyan to-blue-500",
     linkedin: "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
@@ -13,7 +13,7 @@ const team = [
   },
   {
     name: "Lucca Pontes Menezes",
-    role: "Co-founder",
+    role: "Fundador",
     description: "Expert em interfaces modernas e experiência do usuário, transformando designs em código limpo e eficiente.",
     gradient: "from-purple to-pink-500",
     linkedin: "https://www.linkedin.com/in/lucca-dev-818a94328/",
@@ -22,7 +22,7 @@ const team = [
   },
   {
     name: "Cauã Sarraf Ferri",
-    role: "Co-founder",
+    role: "Fundador",
     description: "Focado em integrações e automações, conectando sistemas e otimizando processos de negócio.",
     gradient: "from-cyan to-purple",
     linkedin: "https://www.linkedin.com/in/cauasarraf/?locale=pt",
