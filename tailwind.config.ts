@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,23 +19,17 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Orbitron', 'sans-serif'],
+        sans: ["Inter", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Inter", "sans-serif"],
+        headline: ["Space Grotesk", "sans-serif"],
+        display: ["Space Grotesk", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -51,6 +50,74 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        primary: {
+          ...({
+            DEFAULT: "var(--primary)",
+            foreground: "hsl(var(--primary-foreground))",
+            container: "var(--primary-container)",
+            fixed: "var(--primary-fixed)",
+            "fixed-dim": "var(--primary-fixed-dim)",
+          } as const),
+        },
+        secondary: {
+          ...({
+            DEFAULT: "var(--secondary)",
+            foreground: "hsl(var(--secondary-foreground))",
+            container: "var(--secondary-container)",
+            fixed: "var(--secondary-fixed)",
+            "fixed-dim": "var(--secondary-fixed-dim)",
+          } as const),
+        },
+        tertiary: {
+          ...({
+            DEFAULT: "var(--tertiary)",
+            fixed: "var(--tertiary-fixed)",
+            "fixed-dim": "var(--tertiary-fixed-dim)",
+            container: "var(--tertiary-container)",
+          } as const),
+        },
+        background: "var(--background)",
+        surface: {
+          DEFAULT: "var(--surface)",
+          dim: "var(--surface-dim)",
+          bright: "var(--surface-bright)",
+          tint: "var(--surface-tint)",
+          variant: "var(--surface-variant)",
+          container: "var(--surface-container)",
+          "container-low": "var(--surface-container-low)",
+          "container-lowest": "var(--surface-container-lowest)",
+          "container-high": "var(--surface-container-high)",
+          "container-highest": "var(--surface-container-highest)",
+        },
+        outline: {
+          DEFAULT: "var(--outline)",
+          variant: "var(--outline-variant)",
+        },
+        error: {
+          DEFAULT: "var(--error)",
+          foreground: "var(--on-error)",
+          container: "var(--error-container)",
+        },
+        "on-primary": "var(--on-primary)",
+        "on-primary-container": "var(--on-primary-container)",
+        "on-primary-fixed": "var(--on-primary-fixed)",
+        "on-primary-fixed-variant": "var(--on-primary-fixed-variant)",
+        "on-secondary": "var(--on-secondary)",
+        "on-secondary-container": "var(--on-secondary-container)",
+        "on-secondary-fixed": "var(--on-secondary-fixed)",
+        "on-secondary-fixed-variant": "var(--on-secondary-fixed-variant)",
+        "on-tertiary": "var(--on-tertiary)",
+        "on-tertiary-container": "var(--on-tertiary-container)",
+        "on-tertiary-fixed": "var(--on-tertiary-fixed)",
+        "on-tertiary-fixed-variant": "var(--on-tertiary-fixed-variant)",
+        "on-background": "var(--on-background)",
+        "on-surface": "var(--on-surface)",
+        "on-surface-variant": "var(--on-surface-variant)",
+        "on-error": "var(--on-error)",
+        "on-error-container": "var(--on-error-container)",
+        "inverse-surface": "var(--inverse-surface)",
+        "inverse-on-surface": "var(--inverse-on-surface)",
+        "inverse-primary": "var(--inverse-primary)",
         cyan: {
           DEFAULT: "hsl(var(--cyan))",
           glow: "hsl(var(--cyan-glow))",
