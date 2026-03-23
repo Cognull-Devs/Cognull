@@ -288,7 +288,7 @@ const Index = () => {
                 Conheça os fundadores
               </h2>
               <p className="text-on-surface-variant">
-                Três estudantes de Engenharia da Computação unidos pela paixão
+                Quatro estudantes de Engenharia da Computação unidos pela paixão
                 por tecnologia e pelo compromisso com a excelência.
               </p>
             </div>
