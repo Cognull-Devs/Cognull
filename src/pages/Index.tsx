@@ -39,70 +39,11 @@ const Index = () => {
       <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-surface/70 shadow-[0_4px_20px_rgba(58,110,165,0.16)] backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 font-headline tracking-tight antialiased md:px-8">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-12 w-12 items-center justify-center">
-              <svg
-                aria-hidden="true"
-                className="h-20 w-20"
-                fill="none"
-                viewBox="0 0 200 200"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <linearGradient
-                    id="cognull-mark-gradient"
-                    x1="0"
-                    x2="200"
-                    y1="0"
-                    y2="200"
-                  >
-                    <stop offset="0%" stopColor="var(--primary)" />
-                    <stop offset="100%" stopColor="var(--secondary)" />
-                  </linearGradient>
-                </defs>
-
-                <rect
-                  height="30"
-                  rx="6"
-                  stroke="url(#cognull-mark-gradient)"
-                  strokeWidth="4"
-                  width="120"
-                  x="40"
-                  y="30"
-                />
-
-                <circle cx="60" cy="45" fill="#ff5f57" r="4" />
-                <circle cx="75" cy="45" fill="#ffbd2e" r="4" />
-                <circle cx="90" cy="45" fill="#28c840" r="4" />
-
-                <path
-                  d="M40 60 L40 130 L100 170 L160 130 L160 60"
-                  fill="none"
-                  stroke="url(#cognull-mark-gradient)"
-                  strokeWidth="4"
-                />
-
-                <polyline
-                  fill="none"
-                  points="75,100 60,110 75,120"
-                  stroke="url(#cognull-mark-gradient)"
-                  strokeWidth="4"
-                />
-                <line
-                  stroke="url(#cognull-mark-gradient)"
-                  strokeWidth="4"
-                  x1="100"
-                  x2="100"
-                  y1="95"
-                  y2="125"
-                />
-                <polyline
-                  fill="none"
-                  points="125,100 140,110 125,120"
-                  stroke="url(#cognull-mark-gradient)"
-                  strokeWidth="4"
-                />
-              </svg>
-            </span>
+            <img
+              alt="Logo Cognull"
+              className="h-10 w-10 object-contain"
+              src="/favicon.ico"
+            />
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-2xl font-bold tracking-tighter text-transparent">
               COGNULL
             </span>
@@ -487,13 +428,13 @@ const Index = () => {
 
           <div className="flex gap-6 text-xs uppercase tracking-widest text-on-surface-variant md:gap-8">
             {["Privacidade", "Termos", "Seguranca", "Status"].map((item) => (
-              <a
+              <button
                 className="opacity-80 transition-colors hover:text-secondary hover:opacity-100"
-                href="#"
                 key={item}
+                type="button"
               >
                 {item}
-              </a>
+              </button>
             ))}
           </div>
 
