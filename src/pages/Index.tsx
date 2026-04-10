@@ -206,7 +206,7 @@ const Index = () => {
                     {numero}
                   </div>
                   <div className="flex flex-col gap-3 border-b border-white/10 pb-10 transition-colors group-hover:border-[#3DFF2A]/40">
-                    <h5 className="font-headline text-2xl font-bold uppercase text-white transition-colors group-hover:text-[#E9FFE6]">
+                    <h5 className="font-headline text-2xl font-bold uppercase text-white transition-colors group-hover:text-white">
                       {title}
                     </h5>
                     <p className="max-w-3xl text-sm leading-relaxed text-white/80 transition-colors group-hover:text-white">
@@ -273,14 +273,16 @@ const Index = () => {
               <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-b from-[#49d86a] to-[#2fa14d] font-headline text-3xl text-white">
                 {membro.iniciais}
               </div>
-              <h5 className="mb-1 text-4xl font-headline text-white">{membro.nome}</h5>
-              <p className="mb-8 text-2xl font-label tracking-tight text-[#3DFF2A]">{membro.cargo}</p>
-              <p className="flex-1 text-xl leading-relaxed text-white/90">{membro.descricao}</p>
+              <h5 className="mb-1 text-4xl font-headline text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]">
+                {membro.nome}
+              </h5>
+              <p className="mb-8 text-2xl font-label tracking-tight text-white">{membro.cargo}</p>
+              <p className="flex-1 text-xl leading-relaxed text-white">{membro.descricao}</p>
 
               <div className="mt-8 border-t border-primary/40 pt-7">
                 <div className="flex gap-4">
                   <a
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white/80 transition-colors hover:border-primary hover:text-white"
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white"
                     href={membro.linkedin}
                     rel="noopener noreferrer"
                     target="_blank"
@@ -288,7 +290,7 @@ const Index = () => {
                     <Linkedin className="h-7 w-7" />
                   </a>
                   <a
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white/80 transition-colors hover:border-primary hover:text-white"
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white"
                     href={membro.github}
                     rel="noopener noreferrer"
                     target="_blank"
@@ -335,7 +337,7 @@ const Index = () => {
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {whatsappContacts.map((contato) => (
                 <a
-                  className="rounded-2xl bg-[#8BAEB4]/85 px-6 py-7 transition-all hover:bg-[#C8FFC1]"
+                  className="rounded-2xl border border-transparent bg-[#8BAEB4]/85 px-6 py-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#44EA4A]/40 hover:bg-[rgba(64,94,98,0.98)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)]"
                   href={createWhatsAppLink(contato.numero, contato.nome)}
                   key={contato.nome}
                   rel="noopener noreferrer"
