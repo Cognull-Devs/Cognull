@@ -235,8 +235,8 @@ const Index = () => {
               cargo: "Fundador",
               descricao:
                 "Movido pelo impacto real de converter ideias complexas em ferramentas simples que resolvem problemas do dia a dia.",
-              linkedin: "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
-              github: "https://github.com/NicolasMarrai",
+              linkedin: "https://www.linkedin.com/in/cauasarraf/?locale=pt",
+              github: "https://github.com/CauaOdM",
             },
             {
               iniciais: "NM",
@@ -244,8 +244,8 @@ const Index = () => {
               cargo: "Fundador",
               descricao:
                 "Transformou a curiosidade de quem desmontava tudo na infância na precisão de quem constrói sistemas hoje.",
-              linkedin: "https://www.linkedin.com/in/lucca-pontes-menezes-engenheiro/",
-              github: "https://github.com/DEVLucca",
+              linkedin: "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
+              github: "https://github.com/NicolasMarrai",
             },
             {
               iniciais: "LP",
@@ -253,8 +253,8 @@ const Index = () => {
               cargo: "Fundador",
               descricao:
                 "Mente estratégica focada em encontrar o caminho mais inteligente para sistemas que precisam de escala e segurança.",
-              linkedin: "https://www.linkedin.com/in/cauasarraf/?locale=pt",
-              github: "https://github.com/CauaOdM",
+              linkedin: "https://www.linkedin.com/in/lucca-pontes-menezes-engenheiro/",
+              github: "https://github.com/DEVLucca",
             },
             {
               iniciais: "GG",
@@ -307,7 +307,7 @@ const Index = () => {
           <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.08)_0,transparent_70%)]" />
         </div>
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h2 className="mb-10 font-headline text-[clamp(2.5rem,8vw,5.5rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white">
+          <h2 className="mb-10 font-headline text-[clamp(2.5rem,8vw,5.5rem)] font-bold uppercase leading-[1.06] tracking-tighter text-white">
             Preparado Para
             <br />
             <span className="text-[#3DFF2A]">O Próximo Nível?</span>
