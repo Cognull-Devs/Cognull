@@ -1,15 +1,15 @@
-import { useState } from "react";
 import { Github, Linkedin } from "lucide-react";
+import { useState } from "react";
 
 const whatsappContacts = [
   {
     nome: "Nicolas",
-    area: "Arquitetura & Soluções",
+    area: "Arquitetura & Solucoes",
     numero: "5563984648255",
   },
   {
     nome: "Lucca",
-    area: "Experiência Digital",
+    area: "Experiencia Digital",
     numero: "5563981066558",
   },
   {
@@ -32,463 +32,469 @@ const createWhatsAppLink = (numero: string, nome: string) => {
 };
 
 const Index = () => {
-  const [isConsultoriaOpen, setIsConsultoriaOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary">
-      <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-surface/70 shadow-[0_4px_20px_rgba(58,110,165,0.16)] backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 font-headline tracking-tight antialiased md:px-8">
-          <div className="flex items-center gap-3">
-            <img
-              alt="Logo Cognull"
-              className="h-10 w-10 object-contain"
-              src="/favicon.ico"
+    <div className="bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
+      <nav className="fixed top-0 z-50 flex w-full items-center justify-between px-8 py-6 transition-all duration-500 md:px-16 backdrop-blur-md">
+        <div className="nike-depth font-headline text-2xl font-bold uppercase tracking-[0.2em] text-white">
+          COGNULL
+        </div>
+        <div className="hidden items-center gap-12 font-label text-[10px] uppercase tracking-widest lg:flex">
+          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#services">
+            Serviços
+          </a>
+          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#pipeline">
+            Workflow
+          </a>
+          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#team">
+            Equipe
+          </a>
+          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#contact">
+            Contato
+          </a>
+        </div>
+        <a
+          className="border-2 border-[#3DFF2A] bg-[#3DFF2A] px-6 py-3 font-label text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-colors duration-300 hover:bg-[#E9FFE6] hover:text-[#0B3F3F]"
+          href="#contact"
+        >
+          INICIAR
+        </a>
+      </nav>
+
+      <header className="relative flex min-h-screen items-center overflow-hidden bg-transparent px-8 md:px-16">
+        <div className="mobius-container pointer-events-none absolute right-[-5%] top-1/2 h-[800px] w-[800px] -translate-y-1/2 opacity-20">
+          <svg className="mobius-svg h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="heroGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stopColor="#00E5FF" stopOpacity="1" />
+                <stop offset="100%" stopColor="#00A3FF" stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M100,60 C140,60 160,100 100,140 C40,180 20,100 100,60 Z"
+              fill="none"
+              stroke="url(#heroGradient)"
+              strokeDasharray="2 2"
+              strokeWidth="0.5"
             />
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-2xl font-bold tracking-tighter text-transparent">
-              COGNULL
+            <path
+              d="M100,40 C160,40 180,100 100,160 C20,220 0,100 100,40 Z"
+              fill="none"
+              opacity="0.3"
+              stroke="url(#heroGradient)"
+              strokeWidth="1"
+            />
+            <circle className="animate-pulse-slow" cx="100" cy="100" fill="#00E5FF" r="2" />
+          </svg>
+        </div>
+
+        <div className="relative z-10 max-w-5xl pt-20">
+          <div className="mb-8 flex items-center gap-4">
+            <span className="h-[2px] w-12 bg-[#3DFF2A]" />
+            <span className="font-label text-[11px] font-bold uppercase tracking-[0.4em] text-[#3DFF2A]">
+              Feito Sob Medida
             </span>
           </div>
-
-          <div className="hidden items-center gap-8 md:flex">
+          <h1 className="mb-10 font-headline text-[clamp(3.5rem,10vw,8rem)] font-bold uppercase leading-[0.85] tracking-tighter text-white">
+            COGNULL: ESCALANDO O <span className="text-[#3DFF2A]">CONHECIMENTO</span>
+          </h1>
+          <p className="mb-12 max-w-2xl text-xl font-normal leading-relaxed text-on-surface-variant md:text-2xl">
+            Consultoria de software e solucoes de alto desempenho para o seu business.
+          </p>
+          <div className="flex flex-wrap items-center gap-6">
             <a
-              className="border-b-2 border-secondary pb-1 text-secondary shadow-[0_10px_15px_-3px_rgba(58,110,165,0.35)] transition-all duration-300 hover:text-on-surface"
-              href="#solucoes"
+              className="bg-[#3DFF2A] px-12 py-6 font-label text-xs font-bold uppercase tracking-[0.2em] text-black shadow-xl transition-all hover:bg-[#E9FFE6] hover:text-[#0B3F3F]"
+              href="#contact"
             >
-              Soluções
+              Fale Conosco
             </a>
             <a
-              className="font-medium text-zinc-400 transition-all duration-300 hover:text-white"
-              href="#arquitetura"
+              className="group flex items-center gap-4 font-label text-xs font-bold uppercase tracking-[0.2em] text-white"
+              href="#pipeline"
             >
-              Arquitetura
-            </a>
-            <a
-              className="font-medium text-zinc-400 transition-all duration-300 hover:text-white"
-              href="#plataforma"
-            >
-              Plataforma
-            </a>
-            <a
-              className="font-medium text-zinc-400 transition-all duration-300 hover:text-white"
-              href="#equipe"
-            >
-              Equipe
-            </a>
-            <a
-              className="font-medium text-zinc-400 transition-all duration-300 hover:text-white"
-              href="#documentacao"
-            >
-              Documentação
-            </a>
-          </div>
-
-          <div className="flex items-center gap-4 md:gap-6">
-            <button
-              className="material-symbols-outlined scale-95 text-on-surface-variant transition-all hover:text-on-surface active:scale-90"
-              type="button"
-            >
-              grid_view
-            </button>
-            <button
-              className="rounded-lg bg-primary-container px-5 py-2 font-bold text-on-primary-container transition-all hover:shadow-[0_0_20px_rgba(58,110,165,0.4)] active:scale-90 md:px-6"
-              onClick={() => setIsConsultoriaOpen(true)}
-              type="button"
-            >
-              Começar
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <main>
-        <section
-          className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
-          id="solucoes"
-        >
-          <div className="technical-grid pointer-events-none absolute inset-0"></div>
-          <div className="hero-glow pointer-events-none absolute inset-0"></div>
-          <div className="absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-[120px]"></div>
-          <div className="absolute -right-20 bottom-1/4 h-96 w-96 rounded-full bg-secondary/10 blur-[120px]"></div>
-
-          <div className="relative z-10 mx-auto max-w-5xl px-6 text-center md:px-8">
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-outline-variant/30 bg-surface-container-high px-3 py-1">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary-fixed-dim opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#3DFF2A] text-[#3DFF2A] transition-colors group-hover:border-[#E9FFE6] group-hover:text-[#E9FFE6]">
+                <span className="material-symbols-outlined text-sm">play_arrow</span>
               </span>
-              <span className="text-[0.6875rem] font-bold uppercase tracking-widest text-secondary">
-                Status do Sistema: Ótimo
-              </span>
-            </div>
-
-            <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
-              Arquitetando Inteligência{" "}
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Digital
-              </span>{" "}
-              em Escala
-            </h1>
-
-            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-on-surface-variant md:text-xl">
-              Entregamos resultados previsíveis por meio de integração robusta
-              de sistemas, automação de alta fidelidade e arquiteturas
-              cloud-native escaláveis.
-            </p>
-
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button
-                className="rounded-lg bg-gradient-to-r from-primary-container to-secondary-container px-8 py-4 font-bold text-on-primary-container shadow-[0_0_25px_rgba(58,110,165,0.35)] transition-all hover:scale-105 active:scale-95"
-                onClick={() => setIsConsultoriaOpen(true)}
-                type="button"
-              >
-                Iniciar Projeto
-              </button>
-              <button
-                className="rounded-lg border border-outline-variant/30 bg-surface-variant/40 px-8 py-4 font-semibold text-on-surface backdrop-blur-md transition-all hover:bg-surface-variant/60"
-                type="button"
-              >
-                Ver Documentação
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-surface-container-low py-24" id="arquitetura">
-          <div className="mx-auto max-w-7xl px-6 md:px-8">
-            <div className="mb-20 flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-              <div className="max-w-xl">
-                <h2 className="mb-4 text-3xl font-semibold tracking-tight md:text-4xl">
-                  Fundações de Engenharia
-                </h2>
-                <p className="text-on-surface-variant">
-                  Vamos além de padrões genéricos para construir ecossistemas
-                  técnicos que priorizam performance, segurança e
-                  manutenibilidade no longo prazo.
-                </p>
-              </div>
-              <div className="text-sm font-bold uppercase tracking-widest text-primary">
-                Matriz de Capacidades
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  icon: "account_tree",
-                  color: "text-primary",
-                  title: "Arquitetura Escalavel",
-                  description:
-                    "Sistemas modulares e desacoplados, projetados para lidar com crescimento exponencial de dados sem degradacao de performance.",
-                },
-                {
-                  icon: "hub",
-                  color: "text-secondary",
-                  title: "Integracao de Sistemas",
-                  description:
-                    "Conectamos ambientes legados distintos com infraestruturas modernas orientadas a API de forma fluida.",
-                },
-                {
-                  icon: "bolt",
-                  color: "text-primary",
-                  title: "Automacao Inteligente",
-                  description:
-                    "Fluxos autonomos movidos por logica preditiva para eliminar gargalos operacionais.",
-                },
-                {
-                  icon: "layers",
-                  color: "text-secondary",
-                  title: "Desenvolvimento Full-stack",
-                  description:
-                    "Execucao ponta a ponta: da otimizacao de banco de dados ao desenvolvimento de interfaces de alta fidelidade.",
-                },
-              ].map((item) => (
-                <div
-                  className="group rounded-xl border border-outline-variant/5 bg-surface-container-high p-8 transition-all duration-500 hover:bg-surface-container-highest"
-                  key={item.title}
-                >
-                  <span
-                    className={`material-symbols-outlined mb-6 block text-4xl ${item.color}`}
-                  >
-                    {item.icon}
-                  </span>
-                  <h3 className="mb-3 text-xl font-bold">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-on-surface-variant">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-surface py-24" id="plataforma">
-          <div className="mx-auto max-w-7xl px-6 md:px-8">
-            <div className="mb-16 text-center">
-              <h2 className="mb-2 text-3xl font-bold">
-                O Pipeline Operacional
-              </h2>
-              <div className="mx-auto h-1 w-20 rounded-full bg-primary"></div>
-            </div>
-
-            <div className="relative flex flex-col justify-between gap-8 md:flex-row">
-              <div className="absolute left-0 top-1/2 hidden h-[0.5px] w-full bg-outline-variant/20 md:block"></div>
-
-              {[
-                [
-                  "FASE_01",
-                  "text-primary/60",
-                  "Diagnostico",
-                  "Auditoria Profunda e Mapeamento de Sistema",
-                ],
-                [
-                  "FASE_02",
-                  "text-secondary/60",
-                  "Arquitetura",
-                  "Blueprint e Protocolo de Seguranca",
-                ],
-                [
-                  "FASE_03",
-                  "text-primary/60",
-                  "Desenvolvimento",
-                  "Execucao Agil com CI/CD",
-                ],
-                [
-                  "FASE_04",
-                  "text-secondary/60",
-                  "Escala",
-                  "Monitoramento e Otimizacao",
-                ],
-              ].map(([phase, color, title, description]) => (
-                <div
-                  className="group relative z-10 flex-1 rounded-lg border border-outline-variant/10 bg-surface-container-lowest p-6"
-                  key={phase}
-                >
-                  <div
-                    className={`mb-4 font-mono text-xs tracking-[0.3em] ${color}`}
-                  >
-                    {phase}
-                  </div>
-                  <h4 className="mb-2 text-lg font-bold">{title}</h4>
-                  <p className="text-xs uppercase tracking-wider text-on-surface-variant">
-                    {description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-surface-container-low py-24" id="equipe">
-          <div className="mx-auto max-w-7xl px-6 md:px-8">
-            <div className="mx-auto mb-14 max-w-3xl text-center">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
-                Nossa Equipe
-              </p>
-              <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                Conheça os fundadores
-              </h2>
-              <p className="text-on-surface-variant">
-                Quatro estudantes de Engenharia da Computação unidos pela paixão
-                por tecnologia e pelo compromisso com a excelência.
-              </p>
-            </div>
-
-            <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {[
-                {
-                  iniciais: "NM",
-                  nome: "Nicolas Marrai Alves Feitosa",
-                  cargo: "Fundador",
-                  linkedin:
-                    "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
-                  github: "https://github.com/NicolasMarrai",
-                  descricao:
-                    "Atua na definição de arquitetura e construção de sistemas escaláveis, com foco em desempenho, organização e evolução contínua das soluções.",
-                },
-                {
-                  iniciais: "LP",
-                  nome: "Lucca Pontes Menezes",
-                  cargo: "Fundador",
-                  linkedin:
-                    "https://www.linkedin.com/in/lucca-pontes-menezes-engenheiro/",
-                  github: "https://github.com/DEVLucca",
-                  descricao:
-                    "Responsável pela experiência digital e interfaces, desenvolvendo aplicações intuitivas, funcionais e com alto padrão de usabilidade.",
-                },
-                {
-                  iniciais: "CS",
-                  nome: "Cauã Sarraf Ferri",
-                  cargo: "Fundador",
-                  linkedin: "https://www.linkedin.com/in/cauasarraf/?locale=pt",
-                  github: "https://github.com/CauaOdM",
-                  descricao:
-                    "Responsável pela estrutura de dados e infraestrutura, assegurando estabilidade, segurança e base sólida para crescimento das aplicações.",
-                },
-                {
-                  iniciais: "GG",
-                  nome: "Gabriel Grande Santos",
-                  cargo: "Cofundador",
-                  linkedin: "https://www.linkedin.com/in/gabrielgrande-dev/",
-                  github: "https://github.com/GabrielGrande-dev",
-                  descricao:
-                    "Responsável por banco de dados e infraestrutura, garantindo estabilidade, segurança e escalabilidade das soluções.",
-                },
-              ].map((membro) => (
-                <article
-                  className="flex h-full flex-col rounded-2xl border border-outline-variant/20 bg-surface-container p-6"
-                  key={membro.nome}
-                >
-                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-container to-secondary-container text-sm font-bold tracking-wide text-on-primary-container">
-                    {membro.iniciais}
-                  </div>
-                  <h3 className="mb-1 text-lg font-bold">{membro.nome}</h3>
-                  <p className="mb-4 text-sm font-semibold text-secondary">
-                    {membro.cargo}
-                  </p>
-                  <p className="flex-1 text-sm leading-relaxed text-on-surface-variant">
-                    {membro.descricao}
-                  </p>
-
-                  <div className="mt-6 flex items-center gap-3 border-t border-outline-variant/25 pt-5">
-                    <a
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-outline-variant/35 bg-surface-container-low text-on-surface-variant transition-all hover:border-secondary/60 hover:text-secondary"
-                      href={membro.linkedin}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                    <a
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-outline-variant/35 bg-surface-container-low text-on-surface-variant transition-all hover:border-secondary/60 hover:text-secondary"
-                      href={membro.github}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <Github className="h-5 w-5" />
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="border-t border-outline-variant/10 py-24"
-          id="documentacao"
-        >
-          <div className="mx-auto max-w-7xl px-6 text-center md:px-8">
-            <h3 className="mb-12 text-sm font-bold uppercase tracking-[0.3em] text-on-surface-variant">
-              A Matriz Tecnologica Integrada
-            </h3>
-            <div className="flex flex-wrap justify-center gap-x-12 gap-y-8 opacity-60 transition-opacity hover:opacity-100">
-              {[
-                "APIs RESTful",
-                "Cloud Native",
-                "PostgreSQL",
-                "TypeScript",
-                "Docker/K8s",
-                "Seguranca Zero Trust",
-              ].map((item) => (
-                <span
-                  className="text-xl font-semibold tracking-tighter"
-                  key={item}
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="relative overflow-hidden py-32">
-          <div className="absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 rounded-[100%] bg-primary/20 blur-[120px]"></div>
-          <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-8">
-            <h2 className="mb-6 text-4xl font-bold md:text-5xl">
-              Construa sistemas que realmente escalam.
-            </h2>
-            <p className="mb-10 text-lg text-on-surface-variant">
-              Converse com nossa equipe de arquitetura para discutir seu próximo
-              desafio técnico.
-            </p>
-            <button
-              className="rounded-lg bg-secondary px-12 py-5 font-bold text-on-secondary transition-all hover:shadow-[0_0_30px_rgba(58,110,165,0.35)] active:scale-95"
-              onClick={() => setIsConsultoriaOpen(true)}
-              type="button"
-            >
-              INICIAR CONSULTORIA
-            </button>
-          </div>
-        </section>
-      </main>
-
-      <footer className="w-full border-t border-white/10 bg-surface-dim px-6 py-12 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
-          <div className="text-lg font-bold text-on-surface">COGNULL</div>
-
-          <div className="flex gap-6 text-xs uppercase tracking-widest text-on-surface-variant md:gap-8">
-            {["Privacidade", "Termos", "Seguranca", "Status"].map((item) => (
-              <button
-                className="opacity-80 transition-colors hover:text-secondary hover:opacity-100"
-                key={item}
-                type="button"
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-
-          <div className="text-xs uppercase tracking-widest text-on-surface-variant">
-            © 2026 COGNULL. ARQUITETANDO INTELIGENCIA.
+              Conheça nosso trabalho
+            </a>
           </div>
         </div>
-      </footer>
+      </header>
 
-      {isConsultoriaOpen && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 px-4">
-          <div className="w-full max-w-2xl rounded-2xl border border-outline-variant/40 bg-surface-container p-6 shadow-[0_20px_80px_rgba(0,0,0,0.5)] md:p-8">
-            <div className="mb-6 flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-2xl font-bold tracking-tight">
-                  Iniciar consultoria pelo WhatsApp
-                </h3>
-                <p className="mt-2 text-sm text-on-surface-variant">
-                  Escolha com quem você quer falar para abrir a conversa direta.
-                </p>
+      <div className="relative h-32 w-full overflow-hidden bg-transparent">
+        <div className="absolute inset-0 flex items-center justify-center opacity-20">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
+        </div>
+      </div>
+
+      <section className="relative bg-transparent px-8 py-32 md:px-16" id="pipeline">
+        <div className="mb-24 flex flex-col items-start justify-between gap-12 md:flex-row">
+          <div>
+            <span className="mb-4 block font-label text-xs font-bold uppercase tracking-[0.5em] text-[#3DFF2A]">
+              Nosso Workflow
+            </span>
+            <h2 className="font-headline text-5xl font-bold uppercase tracking-tighter text-white md:text-6xl">
+              Operação Cognull
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["01", "Concepção", "Alinhamos referências e necessidades para iniciar a execução e as primeiras validações no mesmo dia do contato."],
+            ["02", "Arquitetura", "Desenvolvemos uma estrutura escalável desde o primeiro passo. Aplicamos boas práticas que garantem performance e flexibilidade."],
+            ["03", "Desenvolvimento", "Planejamento com entregas e atualizações semanais. Mantemos você a par de cada passo, com um fluxo interno organizado para garantir ritmo e precisão."],
+            ["04", "Escala", "Foco total na saúde do projeto a longo prazo. Desenvolvemos observabilidade para garantir suporte ágil e uma estrutura preparada para escalar, acompanhando cada nova etapa de crescimento da sua empresa."],
+          ].map(([numero, titulo, descricao]) => (
+            <div
+              className="nike-depth glass-panel group rounded-2xl p-10 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A]"
+              key={titulo}
+            >
+              <div className="mb-8 font-headline text-5xl font-bold text-white transition-colors group-hover:text-black">
+                {numero}
               </div>
-              <button
-                className="material-symbols-outlined rounded-lg border border-outline-variant/40 p-2 text-on-surface-variant transition-colors hover:text-on-surface"
-                onClick={() => setIsConsultoriaOpen(false)}
-                type="button"
-              >
-                close
-              </button>
+              <h4 className="mb-4 font-headline text-2xl font-bold uppercase text-white transition-colors group-hover:text-black">{titulo}</h4>
+              <p className="text-sm leading-relaxed text-white transition-colors group-hover:text-black">
+                {descricao}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-transparent px-8 py-32 md:px-16" id="services">
+        <div className="absolute bottom-0 left-[-10%] h-[600px] w-[600px] rounded-full bg-secondary/5 blur-[150px]" />
+        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="space-y-8 lg:sticky lg:top-28">
+            <div className="space-y-4">
+              <h2 className="font-headline text-6xl font-bold uppercase leading-[0.92] tracking-tighter text-white md:text-7xl">
+                Pensado para
+                <br />
+                <span className="text-[#3DFF2A]">Performance.</span>
+              </h2>
             </div>
 
-            <div className="grid gap-3">
+            <p className="max-w-xl text-lg leading-relaxed text-white/85 md:text-xl">
+              O que sustenta qualquer sistema não é apenas código,<br />
+              é compreensão.<br />
+              <br />
+              Acreditamos no conhecimento como um processo contínuo,<br />
+              não linear, não estático, mas em constante construção.
+            </p>
+
+            <div className="flex items-center gap-4 border-l-2 border-[#3DFF2A] pl-4">
+              <span className="font-label text-[10px] uppercase tracking-[0.35em] text-[#3DFF2A]">
+                Estratégia • Execução • Escala
+              </span>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[#3DFF2A] via-[#3DFF2A]/40 to-transparent" />
+
+            <div className="space-y-10 pl-16">
+              {[
+                ["01", "Design Intuitivo e Fluido", "Criamos interfaces modernas e fáceis de usar, garantindo que seu cliente tenha uma experiência impecável em qualquer dispositivo, do celular ao computador."],
+                ["02", "Sistemas Ágeis e Seguros", "Desenvolvemos o motor do seu projeto com foco em velocidade de resposta e proteção total de dados. Assim, garantimos que tudo funcione da melhor forma possível."],
+                ["03", "Infraestrutura Sempre Online", "O suporte que sua empresa precisa para ir mais longe."],
+              ].map(([numero, title, description]) => (
+                <div className="group relative pb-10" key={title}>
+                  <div className="absolute -left-16 top-1 flex h-12 w-12 items-center justify-center rounded-full border border-[#3DFF2A]/60 bg-[#0B3F3F] font-headline text-lg text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-[#0B3F3F]">
+                    {numero}
+                  </div>
+                  <div className="flex flex-col gap-3 border-b border-white/10 pb-10 transition-colors group-hover:border-[#3DFF2A]/40">
+                    <h5 className="font-headline text-2xl font-bold uppercase text-white transition-colors group-hover:text-[#E9FFE6]">
+                      {title}
+                    </h5>
+                    <p className="max-w-3xl text-sm leading-relaxed text-white/80 transition-colors group-hover:text-white">
+                      {description}
+                    </p>
+                    <div className="mt-2 h-px w-24 bg-[#3DFF2A]/60 transition-all group-hover:w-40 group-hover:bg-[#E9FFE6]" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-transparent px-8 py-32 md:px-16" id="team">
+        <div className="mb-24 text-center">
+          <h3 className="font-headline text-5xl font-bold uppercase tracking-tighter text-white md:text-6xl">
+            The Founders
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {[
+            {
+              iniciais: "CS",
+              nome: "Cauã Sarraf Ferri",
+              cargo: "Fundador",
+              descricao:
+                "Movido pelo impacto real de converter ideias complexas em ferramentas simples que resolvem problemas do dia a dia.",
+              linkedin: "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
+              github: "https://github.com/NicolasMarrai",
+            },
+            {
+              iniciais: "NM",
+              nome: "Nicolas Marrai",
+              cargo: "Fundador",
+              descricao:
+                "Transformou a curiosidade de quem desmontava tudo na infância na precisão de quem constrói sistemas hoje.",
+              linkedin: "https://www.linkedin.com/in/lucca-pontes-menezes-engenheiro/",
+              github: "https://github.com/DEVLucca",
+            },
+            {
+              iniciais: "LP",
+              nome: "Luccas Pontes",
+              cargo: "Fundador",
+              descricao:
+                "Mente estratégica focada em encontrar o caminho mais inteligente para sistemas que precisam de escala e segurança.",
+              linkedin: "https://www.linkedin.com/in/cauasarraf/?locale=pt",
+              github: "https://github.com/CauaOdM",
+            },
+            {
+              iniciais: "GG",
+              nome: "Gabriel Grande",
+              cargo: "Cofundador",
+              descricao:
+                "Traz a ética do trabalho duro e o compromisso de quem trata cada projeto como se fosse o dono do negócio.",
+              linkedin: "https://www.linkedin.com/in/gabrielgrande-dev/",
+              github: "https://github.com/GabrielGrande-dev",
+            },
+          ].map((membro) => (
+            <article
+              className="flex min-h-[520px] flex-col rounded-3xl border border-primary/35 bg-[rgba(11,63,63,0.28)] p-8 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-colors hover:border-[#3DFF2A]"
+              key={membro.nome}
+            >
+              <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-b from-[#49d86a] to-[#2fa14d] font-headline text-3xl text-white">
+                {membro.iniciais}
+              </div>
+              <h5 className="mb-1 text-4xl font-headline text-white">{membro.nome}</h5>
+              <p className="mb-8 text-2xl font-label tracking-tight text-[#3DFF2A]">{membro.cargo}</p>
+              <p className="flex-1 text-xl leading-relaxed text-white/90">{membro.descricao}</p>
+
+              <div className="mt-8 border-t border-primary/40 pt-7">
+                <div className="flex gap-4">
+                  <a
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white/80 transition-colors hover:border-primary hover:text-white"
+                    href={membro.linkedin}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Linkedin className="h-7 w-7" />
+                  </a>
+                  <a
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white/80 transition-colors hover:border-primary hover:text-white"
+                    href={membro.github}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Github className="h-7 w-7" />
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-transparent px-8 py-40" id="contact">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.08)_0,transparent_70%)]" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <h2 className="mb-10 font-headline text-[clamp(2.5rem,8vw,5.5rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white">
+            Preparado Para
+            <br />
+            <span className="text-[#3DFF2A]">O Próximo Nível?</span>
+          </h2>
+          <p className="mx-auto mb-16 max-w-2xl text-lg font-normal text-on-surface-variant">
+            Inicie sua jornada hoje. Nossa equipe esta pronta para o impactar o seu negócio.
+          </p>
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-16 py-8 font-headline text-xs font-bold uppercase tracking-[0.4em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F]"
+            type="button"
+          >
+            <span className="relative z-10">Comece por Aqui</span>
+            <span className="absolute inset-0 translate-y-full bg-[#E9FFE6] transition-transform duration-500 group-hover:translate-y-0" />
+          </button>
+        </div>
+      </section>
+
+      {isContactModalOpen && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4" onClick={() => setIsContactModalOpen(false)}>
+          <div
+            className="w-full max-w-6xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.9)] p-8 shadow-2xl backdrop-blur-md"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {whatsappContacts.map((contato) => (
                 <a
-                  className="group flex items-center justify-between rounded-xl border border-outline-variant/30 bg-surface-container-low px-4 py-4 transition-all hover:border-secondary/60 hover:bg-surface-container-high"
+                  className="rounded-2xl bg-[#8BAEB4]/85 px-6 py-7 transition-all hover:bg-[#C8FFC1]"
                   href={createWhatsAppLink(contato.numero, contato.nome)}
                   key={contato.nome}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  <div>
-                    <p className="font-semibold">{contato.nome}</p>
-                    <p className="text-sm text-on-surface-variant">
-                      {contato.area}
-                    </p>
-                  </div>
-                  <span className="text-sm font-semibold text-secondary transition-colors group-hover:text-primary">
-                    Chamar no WhatsApp
-                  </span>
+                  <p className="mb-2 font-headline text-4xl text-white">{contato.nome}</p>
+                  <p className="font-label text-sm uppercase tracking-[0.3em] text-white">{contato.area}</p>
                 </a>
               ))}
             </div>
           </div>
         </div>
       )}
+
+      {isPrivacyModalOpen && (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
+          onClick={() => setIsPrivacyModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.94)] p-8 shadow-2xl backdrop-blur-md"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-8 flex items-center justify-between gap-4">
+              <div>
+                <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A]">
+                  Privacidade
+                </span>
+                <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
+                  Política de privacidade
+                </h2>
+              </div>
+              <button
+                className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+                onClick={() => setIsPrivacyModalOpen(false)}
+                type="button"
+              >
+                Fechar
+              </button>
+            </div>
+
+            <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
+              <p>
+                A COGNULL coleta apenas as informações necessárias para responder
+                contatos, entender solicitações e melhorar a experiência no site.
+              </p>
+              <p>
+                Quando você entra em contato por formulário, WhatsApp ou outros
+                canais, podemos armazenar nome, telefone, e-mail e mensagem para
+                retorno e acompanhamento do atendimento.
+              </p>
+              <p>
+                Também podemos usar dados de navegação de forma agregada e
+                anônima para medir desempenho, identificar problemas e aprimorar o
+                conteúdo do site.
+              </p>
+              <p>
+                Não vendemos seus dados pessoais. O compartilhamento ocorre apenas
+                quando necessário para operação, atendimento ou por exigência legal.
+              </p>
+              <p>
+                Se desejar atualizar, corrigir ou solicitar a exclusão de dados,
+                entre em contato com a equipe da COGNULL pelos canais do site.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isTermsModalOpen && (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
+          onClick={() => setIsTermsModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.94)] p-8 shadow-2xl backdrop-blur-md"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-8 flex items-center justify-between gap-4">
+              <div>
+                <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A]">
+                  Termos
+                </span>
+                <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
+                  Termos de uso
+                </h2>
+              </div>
+              <button
+                className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+                onClick={() => setIsTermsModalOpen(false)}
+                type="button"
+              >
+                Fechar
+              </button>
+            </div>
+
+            <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
+              <p>
+                Ao acessar e utilizar o site da COGNULL, você concorda com estes
+                termos básicos de uso.
+              </p>
+              <p>
+                O conteúdo do site tem finalidade informativa e comercial. Os
+                serviços descritos podem ser ajustados, atualizados ou removidos
+                sem aviso prévio.
+              </p>
+              <p>
+                O usuário se compromete a não utilizar este site para atividades
+                ilegais, abusivas, maliciosas ou que possam comprometer seu
+                funcionamento.
+              </p>
+              <p>
+                O contato realizado por WhatsApp, formulário ou outros canais deve
+                fornecer informações verdadeiras para que possamos atender de
+                forma adequada.
+              </p>
+              <p>
+                Todo o conteúdo visual, textual e técnico exibido neste site é de
+                uso exclusivo da COGNULL, salvo indicação em contrário.
+              </p>
+              <p>
+                A COGNULL pode atualizar estes termos a qualquer momento para se
+                adequar a mudanças de serviço, operação ou legislação.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <footer className="w-full border-t border-black/5 bg-transparent px-8 py-8 md:px-16">
+        <div className="mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-6 whitespace-nowrap">
+          <div className="font-headline text-lg font-bold uppercase tracking-[0.18em] text-white whitespace-nowrap">
+            COGNULL
+          </div>
+
+          <div className="flex flex-nowrap items-center gap-6 text-[9px] uppercase tracking-[0.22em] text-on-surface-variant whitespace-nowrap">
+            <a className="transition-colors hover:text-white" href="#services">
+              SERVIÇOS
+            </a>
+            <a className="transition-colors hover:text-white" href="#team">
+              EQUIPE
+            </a>
+            <a className="transition-colors hover:text-white" href="#contact">
+              CONTATO
+            </a>
+            <button className="transition-colors hover:text-white" onClick={() => setIsPrivacyModalOpen(true)} type="button">
+              PRIVACIDADE
+            </button>
+            <button className="transition-colors hover:text-white" onClick={() => setIsTermsModalOpen(true)} type="button">
+              TERMOS
+            </button>
+          </div>
+
+          <div className="text-[9px] uppercase tracking-[0.22em] text-[#E9FFE6] whitespace-nowrap">
+            © 2026 COGNULL. ARQUITETANDO INTELIGENCIA.
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
 };

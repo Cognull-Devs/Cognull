@@ -19,11 +19,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        body: ["Inter", "sans-serif"],
-        label: ["Inter", "sans-serif"],
-        headline: ["Space Grotesk", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
+        sans: ["IBM Plex Sans", "sans-serif"],
+        body: ["IBM Plex Sans", "sans-serif"],
+        label: ["Archivo Black", "sans-serif"],
+        headline: ["Archivo Black", "sans-serif"],
+        display: ["Archivo Black", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -161,6 +161,10 @@ export default {
           "0%": { opacity: "0", transform: "translateX(50px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -170,6 +174,9 @@ export default {
         "scale-in": "scale-in 0.5s ease-out forwards",
         "slide-in-left": "slide-in-left 0.6s ease-out forwards",
         "slide-in-right": "slide-in-right 0.6s ease-out forwards",
+        float: "float 6s ease-in-out infinite",
+        "spin-slow": "spin 12s linear infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },
