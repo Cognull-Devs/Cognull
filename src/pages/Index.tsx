@@ -1,4 +1,4 @@
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const whatsappContacts = [
@@ -35,37 +35,68 @@ const Index = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
-      <nav className="fixed top-0 z-50 flex w-full items-center justify-between px-8 py-6 transition-all duration-500 md:px-16 backdrop-blur-md">
-        <div className="nike-depth font-headline text-2xl font-bold uppercase tracking-[0.2em] text-white">
+      <nav className="fixed top-0 z-50 w-full backdrop-blur-md">
+        <div className="flex items-center justify-between px-4 py-4 transition-all duration-500 sm:px-6 md:px-16 md:py-6">
+          <div className="nike-depth font-headline text-lg font-bold uppercase tracking-[0.16em] text-white sm:text-2xl sm:tracking-[0.2em]">
           COGNULL
+          </div>
+          <div className="hidden items-center gap-12 font-label text-[10px] uppercase tracking-widest lg:flex">
+            <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#services">
+              Serviços
+            </a>
+            <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#pipeline">
+              Workflow
+            </a>
+            <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#team">
+              Equipe
+            </a>
+            <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#contact">
+              Contato
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <a
+              className="border-2 border-[#3DFF2A] bg-[#3DFF2A] px-3 py-2 font-label text-[9px] font-bold uppercase tracking-[0.18em] text-black transition-colors duration-300 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] sm:px-6 sm:py-3 sm:text-[10px] sm:tracking-[0.2em]"
+              href="#contact"
+            >
+              INICIAR
+            </a>
+            <button
+              aria-label="Abrir menu"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/20 text-white lg:hidden"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              type="button"
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
-        <div className="hidden items-center gap-12 font-label text-[10px] uppercase tracking-widest lg:flex">
-          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#services">
-            Serviços
-          </a>
-          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#pipeline">
-            Workflow
-          </a>
-          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#team">
-            Equipe
-          </a>
-          <a className="text-white transition-colors hover:text-[#E9FFE6]" href="#contact">
-            Contato
-          </a>
-        </div>
-        <a
-          className="border-2 border-[#3DFF2A] bg-[#3DFF2A] px-6 py-3 font-label text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-colors duration-300 hover:bg-[#E9FFE6] hover:text-[#0B3F3F]"
-          href="#contact"
-        >
-          INICIAR
-        </a>
+        {isMobileMenuOpen && (
+          <div className="border-t border-white/10 bg-[#1f4f4f]/95 px-4 py-4 lg:hidden">
+            <div className="flex flex-col gap-3 font-label text-[11px] uppercase tracking-[0.2em] text-white">
+              <a className="transition-colors hover:text-[#E9FFE6]" href="#services" onClick={() => setIsMobileMenuOpen(false)}>
+                Serviços
+              </a>
+              <a className="transition-colors hover:text-[#E9FFE6]" href="#pipeline" onClick={() => setIsMobileMenuOpen(false)}>
+                Workflow
+              </a>
+              <a className="transition-colors hover:text-[#E9FFE6]" href="#team" onClick={() => setIsMobileMenuOpen(false)}>
+                Equipe
+              </a>
+              <a className="transition-colors hover:text-[#E9FFE6]" href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                Contato
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
-      <header className="relative flex min-h-screen items-center overflow-hidden bg-transparent px-8 md:px-16">
-        <div className="mobius-container pointer-events-none absolute right-[-5%] top-1/2 h-[800px] w-[800px] -translate-y-1/2 opacity-20">
+      <header className="relative flex min-h-screen items-center overflow-hidden bg-transparent px-4 pt-16 sm:px-6 md:px-16 md:pt-0">
+        <div className="mobius-container pointer-events-none absolute right-[-40%] top-1/2 h-[420px] w-[420px] -translate-y-1/2 opacity-20 sm:right-[-20%] sm:h-[560px] sm:w-[560px] md:right-[-5%] md:h-[800px] md:w-[800px]">
           <svg className="mobius-svg h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="heroGradient" x1="0%" x2="100%" y1="0%" y2="100%">
@@ -91,28 +122,28 @@ const Index = () => {
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-5xl pt-20">
-          <div className="mb-8 flex items-center gap-4">
-            <span className="h-[2px] w-12 bg-[#3DFF2A]" />
-            <span className="font-label text-[11px] font-bold uppercase tracking-[0.4em] text-[#3DFF2A]">
+        <div className="relative z-10 max-w-5xl pt-16 md:pt-20">
+          <div className="mb-6 flex items-center gap-3 md:mb-8 md:gap-4">
+            <span className="h-[2px] w-10 bg-[#3DFF2A] md:w-12" />
+            <span className="font-label text-[10px] font-bold uppercase tracking-[0.28em] text-[#3DFF2A] md:text-[11px] md:tracking-[0.4em]">
               Feito Sob Medida
             </span>
           </div>
-          <h1 className="mb-10 font-headline text-[clamp(3.5rem,10vw,8rem)] font-bold uppercase leading-[0.85] tracking-tighter text-white">
+          <h1 className="mb-6 font-headline text-[clamp(2.25rem,11vw,8rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white md:mb-10 md:leading-[0.85]">
             COGNULL: ESCALANDO O <span className="text-[#3DFF2A]">CONHECIMENTO</span>
           </h1>
-          <p className="mb-12 max-w-2xl text-xl font-normal leading-relaxed text-on-surface-variant md:text-2xl">
+          <p className="mb-8 max-w-2xl text-base font-normal leading-relaxed text-on-surface-variant sm:text-lg md:mb-12 md:text-2xl">
             Consultoria de software e solucoes de alto desempenho para o seu business.
           </p>
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6">
             <a
-              className="bg-[#3DFF2A] px-12 py-6 font-label text-xs font-bold uppercase tracking-[0.2em] text-black shadow-xl transition-all hover:bg-[#E9FFE6] hover:text-[#0B3F3F]"
+              className="bg-[#3DFF2A] px-7 py-4 font-label text-[10px] font-bold uppercase tracking-[0.18em] text-black shadow-xl transition-all hover:bg-[#E9FFE6] hover:text-[#0B3F3F] sm:px-10 sm:py-5 sm:text-xs md:px-12 md:py-6 md:tracking-[0.2em]"
               href="#contact"
             >
               Fale Conosco
             </a>
             <a
-              className="group flex items-center gap-4 font-label text-xs font-bold uppercase tracking-[0.2em] text-white"
+              className="group flex items-center gap-3 font-label text-[10px] font-bold uppercase tracking-[0.16em] text-white sm:gap-4 sm:text-xs sm:tracking-[0.2em]"
               href="#pipeline"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#3DFF2A] text-[#3DFF2A] transition-colors group-hover:border-[#E9FFE6] group-hover:text-[#E9FFE6]">
@@ -130,13 +161,13 @@ const Index = () => {
         </div>
       </div>
 
-      <section className="relative bg-transparent px-8 py-32 md:px-16" id="pipeline">
-        <div className="mb-24 flex flex-col items-start justify-between gap-12 md:flex-row">
+      <section className="relative bg-transparent px-4 py-20 sm:px-6 md:px-16 md:py-32" id="pipeline">
+        <div className="mb-12 flex flex-col items-start justify-between gap-10 md:mb-24 md:flex-row md:gap-12">
           <div>
-            <span className="mb-4 block font-label text-xs font-bold uppercase tracking-[0.5em] text-[#3DFF2A]">
+            <span className="mb-3 block font-label text-[10px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A] md:mb-4 md:text-xs md:tracking-[0.5em]">
               Nosso Workflow
             </span>
-            <h2 className="font-headline text-5xl font-bold uppercase tracking-tighter text-white md:text-6xl">
+            <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white sm:text-4xl md:text-6xl">
               Operação Cognull
             </h2>
           </div>
@@ -150,13 +181,13 @@ const Index = () => {
             ["04", "Escala", "Foco total na saúde do projeto a longo prazo. Desenvolvemos observabilidade para garantir suporte ágil e uma estrutura preparada para escalar, acompanhando cada nova etapa de crescimento da sua empresa."],
           ].map(([numero, titulo, descricao]) => (
             <div
-              className="nike-depth glass-panel group rounded-2xl p-10 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A]"
+              className="nike-depth glass-panel group rounded-2xl p-7 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A] sm:p-10"
               key={titulo}
             >
-              <div className="mb-8 font-headline text-5xl font-bold text-white transition-colors group-hover:text-black">
+              <div className="mb-6 font-headline text-4xl font-bold text-white transition-colors group-hover:text-black sm:mb-8 sm:text-5xl">
                 {numero}
               </div>
-              <h4 className="mb-4 font-headline text-2xl font-bold uppercase text-white transition-colors group-hover:text-black">{titulo}</h4>
+              <h4 className="mb-3 font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-black sm:mb-4 sm:text-2xl">{titulo}</h4>
               <p className="text-sm leading-relaxed text-white transition-colors group-hover:text-black">
                 {descricao}
               </p>
@@ -165,19 +196,19 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-transparent px-8 py-32 md:px-16" id="services">
+      <section className="relative overflow-hidden bg-transparent px-4 py-20 sm:px-6 md:px-16 md:py-32" id="services">
         <div className="absolute bottom-0 left-[-10%] h-[600px] w-[600px] rounded-full bg-secondary/5 blur-[150px]" />
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div className="space-y-8 lg:sticky lg:top-28">
             <div className="space-y-4">
-              <h2 className="font-headline text-6xl font-bold uppercase leading-[0.92] tracking-tighter text-white md:text-7xl">
+              <h2 className="font-headline text-4xl font-bold uppercase leading-[0.94] tracking-tighter text-white sm:text-5xl md:text-7xl md:leading-[0.92]">
                 Pensado para
                 <br />
                 <span className="text-[#3DFF2A]">Performance.</span>
               </h2>
             </div>
 
-            <p className="max-w-xl text-lg leading-relaxed text-white/85 md:text-xl">
+            <p className="max-w-xl text-base leading-relaxed text-white/85 md:text-xl">
               O que sustenta qualquer sistema não é apenas código,<br />
               é compreensão.<br />
               <br />
@@ -193,20 +224,20 @@ const Index = () => {
           </div>
 
           <div className="relative">
-            <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[#3DFF2A] via-[#3DFF2A]/40 to-transparent" />
+            <div className="absolute left-3 top-0 h-full w-px bg-gradient-to-b from-[#3DFF2A] via-[#3DFF2A]/40 to-transparent sm:left-6" />
 
-            <div className="space-y-10 pl-16">
+            <div className="space-y-10 pl-10 sm:pl-16">
               {[
                 ["01", "Design Intuitivo e Fluido", "Criamos interfaces modernas e fáceis de usar, garantindo que seu cliente tenha uma experiência impecável em qualquer dispositivo, do celular ao computador."],
                 ["02", "Sistemas Ágeis e Seguros", "Desenvolvemos o motor do seu projeto com foco em velocidade de resposta e proteção total de dados. Assim, garantimos que tudo funcione da melhor forma possível."],
                 ["03", "Infraestrutura Sempre Online", "O suporte que sua empresa precisa para ir mais longe."],
               ].map(([numero, title, description]) => (
                 <div className="group relative pb-10" key={title}>
-                  <div className="absolute -left-16 top-1 flex h-12 w-12 items-center justify-center rounded-full border border-[#3DFF2A]/60 bg-[#0B3F3F] font-headline text-lg text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-[#0B3F3F]">
+                  <div className="absolute -left-10 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-[#3DFF2A]/60 bg-[#0B3F3F] font-headline text-base text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-[#0B3F3F] sm:-left-16 sm:h-12 sm:w-12 sm:text-lg">
                     {numero}
                   </div>
                   <div className="flex flex-col gap-3 border-b border-white/10 pb-10 transition-colors group-hover:border-[#3DFF2A]/40">
-                    <h5 className="font-headline text-2xl font-bold uppercase text-white transition-colors group-hover:text-white">
+                    <h5 className="font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-white sm:text-2xl">
                       {title}
                     </h5>
                     <p className="max-w-3xl text-sm leading-relaxed text-white/80 transition-colors group-hover:text-white">
@@ -221,9 +252,9 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="bg-transparent px-8 py-32 md:px-16" id="team">
-        <div className="mb-24 text-center">
-          <h3 className="font-headline text-5xl font-bold uppercase tracking-tighter text-white md:text-6xl">
+      <section className="bg-transparent px-4 py-20 sm:px-6 md:px-16 md:py-32" id="team">
+        <div className="mb-12 text-center md:mb-24">
+          <h3 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white sm:text-4xl md:text-6xl">
             The Founders
           </h3>
         </div>
@@ -267,35 +298,35 @@ const Index = () => {
             },
           ].map((membro) => (
             <article
-              className="flex min-h-[520px] flex-col rounded-3xl border border-primary/35 bg-[rgba(11,63,63,0.28)] p-8 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-colors hover:border-[#3DFF2A]"
+              className="flex min-h-[420px] flex-col rounded-3xl border border-primary/35 bg-[rgba(11,63,63,0.28)] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-colors hover:border-[#3DFF2A] sm:min-h-[520px] sm:p-8"
               key={membro.nome}
             >
-              <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-b from-[#49d86a] to-[#2fa14d] font-headline text-3xl text-white">
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-b from-[#49d86a] to-[#2fa14d] font-headline text-2xl text-white sm:mb-8 sm:h-14 sm:w-14 sm:text-3xl">
                 {membro.iniciais}
               </div>
-              <h5 className="mb-1 text-4xl font-headline text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]">
+              <h5 className="mb-1 text-2xl font-headline text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-4xl">
                 {membro.nome}
               </h5>
-              <p className="mb-8 text-2xl font-label tracking-tight text-white">{membro.cargo}</p>
-              <p className="flex-1 text-xl leading-relaxed text-white">{membro.descricao}</p>
+              <p className="mb-6 text-lg font-label tracking-tight text-white sm:mb-8 sm:text-2xl">{membro.cargo}</p>
+              <p className="flex-1 text-base leading-relaxed text-white sm:text-xl">{membro.descricao}</p>
 
               <div className="mt-8 border-t border-primary/40 pt-7">
                 <div className="flex gap-4">
                   <a
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white"
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white sm:h-14 sm:w-14"
                     href={membro.linkedin}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Linkedin className="h-7 w-7" />
+                    <Linkedin className="h-6 w-6 sm:h-7 sm:w-7" />
                   </a>
                   <a
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white"
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white sm:h-14 sm:w-14"
                     href={membro.github}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <Github className="h-7 w-7" />
+                    <Github className="h-6 w-6 sm:h-7 sm:w-7" />
                   </a>
                 </div>
               </div>
@@ -304,7 +335,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-transparent px-8 py-40" id="contact">
+      <section className="relative overflow-hidden bg-transparent px-4 py-24 sm:px-6 md:px-8 md:py-40" id="contact">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2">
           <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.08)_0,transparent_70%)]" />
         </div>
@@ -314,12 +345,12 @@ const Index = () => {
             <br />
             <span className="text-[#3DFF2A]">O Próximo Nível?</span>
           </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-lg font-normal text-on-surface-variant">
+          <p className="mx-auto mb-10 max-w-2xl text-base font-normal text-on-surface-variant md:mb-16 md:text-lg">
             Inicie sua jornada hoje. Nossa equipe esta pronta para o impactar o seu negócio.
           </p>
           <button
             onClick={() => setIsContactModalOpen(true)}
-            className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-16 py-8 font-headline text-xs font-bold uppercase tracking-[0.4em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F]"
+            className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-8 py-5 font-headline text-[10px] font-bold uppercase tracking-[0.25em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] sm:px-12 sm:py-7 sm:text-xs sm:tracking-[0.35em] md:px-16 md:py-8 md:tracking-[0.4em]"
             type="button"
           >
             <span className="relative z-10">Comece por Aqui</span>
@@ -334,17 +365,17 @@ const Index = () => {
             className="w-full max-w-6xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.9)] p-8 shadow-2xl backdrop-blur-md"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
               {whatsappContacts.map((contato) => (
                 <a
-                  className="rounded-2xl border border-transparent bg-[#8BAEB4]/85 px-6 py-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#44EA4A]/40 hover:bg-[rgba(64,94,98,0.98)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)]"
+                  className="rounded-2xl border border-transparent bg-[#8BAEB4]/85 px-5 py-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#44EA4A]/40 hover:bg-[rgba(64,94,98,0.98)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)] md:px-6 md:py-7"
                   href={createWhatsAppLink(contato.numero, contato.nome)}
                   key={contato.nome}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  <p className="mb-2 font-headline text-4xl text-white">{contato.nome}</p>
-                  <p className="font-label text-sm uppercase tracking-[0.3em] text-white">{contato.area}</p>
+                  <p className="mb-2 font-headline text-2xl text-white md:text-4xl">{contato.nome}</p>
+                  <p className="font-label text-xs uppercase tracking-[0.2em] text-white md:text-sm md:tracking-[0.3em]">{contato.area}</p>
                 </a>
               ))}
             </div>
@@ -467,13 +498,13 @@ const Index = () => {
         </div>
       )}
 
-      <footer className="w-full border-t border-black/5 bg-transparent px-8 py-8 md:px-16">
-        <div className="mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-6 whitespace-nowrap">
-          <div className="font-headline text-lg font-bold uppercase tracking-[0.18em] text-white whitespace-nowrap">
+      <footer className="w-full border-t border-black/5 bg-transparent px-4 py-8 sm:px-6 md:px-16">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 text-left md:flex-row md:items-center md:text-center">
+          <div className="font-headline text-base font-bold uppercase tracking-[0.14em] text-white sm:text-lg sm:tracking-[0.18em]">
             COGNULL
           </div>
 
-          <div className="flex flex-nowrap items-center gap-6 text-[9px] uppercase tracking-[0.22em] text-on-surface-variant whitespace-nowrap">
+          <div className="flex flex-wrap items-center gap-4 text-[9px] uppercase tracking-[0.18em] text-on-surface-variant sm:gap-6 sm:tracking-[0.22em]">
             <a className="transition-colors hover:text-white" href="#services">
               SERVIÇOS
             </a>
@@ -491,7 +522,7 @@ const Index = () => {
             </button>
           </div>
 
-          <div className="text-[9px] uppercase tracking-[0.22em] text-[#E9FFE6] whitespace-nowrap">
+          <div className="text-[9px] uppercase tracking-[0.18em] text-[#E9FFE6] sm:tracking-[0.22em]">
             © 2026 COGNULL. ARQUITETANDO INTELIGENCIA.
           </div>
         </div>
