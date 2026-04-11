@@ -1,5 +1,8 @@
 import { Github, Linkedin, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
+
+const ATOM_COUNT = 75;
+const atomIndexes = Array.from({ length: ATOM_COUNT }, (_, index) => index);
 
 const whatsappContacts = [
   {
@@ -38,7 +41,21 @@ const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
+    <div className="relative isolate bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
+      <div aria-hidden className="organism-background">
+        {[0, 1].map((organismIndex) => (
+          <div className={`organism ${organismIndex === 0 ? "organism--mirror" : ""}`} key={organismIndex}>
+            {atomIndexes.map((index) => (
+              <div
+                className="atom"
+                key={index}
+                style={{ "--i": index } as CSSProperties}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+
       <nav className="fixed top-0 z-50 w-full backdrop-blur-md">
         <div className="flex items-center justify-between px-4 py-4 transition-all duration-500 sm:px-6 md:px-16 md:py-6">
           <div className="nike-depth font-headline text-lg font-bold uppercase tracking-[0.16em] text-white sm:text-2xl sm:tracking-[0.2em]">
@@ -96,32 +113,6 @@ const Index = () => {
       </nav>
 
       <header className="relative flex min-h-screen items-center overflow-hidden bg-transparent px-4 pt-16 sm:px-6 md:px-16 md:pt-0">
-        <div className="mobius-container pointer-events-none absolute right-[-40%] top-1/2 h-[420px] w-[420px] -translate-y-1/2 opacity-20 sm:right-[-20%] sm:h-[560px] sm:w-[560px] md:right-[-5%] md:h-[800px] md:w-[800px]">
-          <svg className="mobius-svg h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="heroGradient" x1="0%" x2="100%" y1="0%" y2="100%">
-                <stop offset="0%" stopColor="#00E5FF" stopOpacity="1" />
-                <stop offset="100%" stopColor="#00A3FF" stopOpacity="1" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M100,60 C140,60 160,100 100,140 C40,180 20,100 100,60 Z"
-              fill="none"
-              stroke="url(#heroGradient)"
-              strokeDasharray="2 2"
-              strokeWidth="0.5"
-            />
-            <path
-              d="M100,40 C160,40 180,100 100,160 C20,220 0,100 100,40 Z"
-              fill="none"
-              opacity="0.3"
-              stroke="url(#heroGradient)"
-              strokeWidth="1"
-            />
-            <circle className="animate-pulse-slow" cx="100" cy="100" fill="#00E5FF" r="2" />
-          </svg>
-        </div>
-
         <div className="relative z-10 max-w-5xl pt-16 md:pt-20">
           <div className="mb-6 flex items-center gap-3 md:mb-8 md:gap-4">
             <span className="h-[2px] w-10 bg-[#3DFF2A] md:w-12" />

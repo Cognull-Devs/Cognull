@@ -145,12 +145,51 @@
     text-shadow: 0 0 15px rgb(0 229 255 / 0.3);
   }
 
-  .mobius-container {
+  .organism-background {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
     perspective: 1000px;
+    opacity: 0.62;
   }
 
-  .mobius-svg {
-    animation: mobius-rotate 20s linear infinite;
+  .organism {
+    position: absolute;
+    inset: 0;
+    transform: scale(1.14);
+  }
+
+  .organism--mirror {
+    transform: scale(-1.14, -1.14) rotate(8deg);
+  }
+
+  .atom {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 128px;
+    height: 128px;
+    border-radius: 999px;
+    animation: organism-life 7s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -3s / 100);
+  }
+
+  .atom::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: inherit;
+    height: inherit;
+    border-radius: 999px;
+    border-bottom: 2px dotted transparent;
+    border-bottom-color: hsl(calc(118 + (var(--i) * 26 / 100)) 98% 57% / 1);
+    transform:
+      rotateX(calc(var(--i) * 720deg / 100))
+      translate(calc(var(--i) * 680px / 100))
+      scale(calc(var(--i) * 5.4 / 100));
   }
 
   .nike-depth {
@@ -179,13 +218,9 @@
   }
 }
 
-@keyframes mobius-rotate {
-  from {
-    transform: rotateY(0deg) rotateZ(0deg);
-  }
-
-  to {
-    transform: rotateY(360deg) rotateZ(360deg);
+@keyframes organism-life {
+  50% {
+    transform: rotateY(180deg) translateY(240px) scale(1, -1);
   }
 }
 
