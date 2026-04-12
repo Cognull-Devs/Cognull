@@ -1,5 +1,6 @@
 import { Github, Linkedin, Menu, X } from "lucide-react";
 import { useState, type CSSProperties } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ATOM_COUNT = 75;
 const atomIndexes = Array.from({ length: ATOM_COUNT }, (_, index) => index);
@@ -39,24 +40,27 @@ const Index = () => {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div className="relative isolate bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
-      <div aria-hidden className="organism-background">
-        {[0, 1].map((organismIndex) => (
-          <div className={`organism ${organismIndex === 0 ? "organism--mirror" : ""}`} key={organismIndex}>
-            {atomIndexes.map((index) => (
-              <div
-                className="atom"
-                key={index}
-                style={{ "--i": index } as CSSProperties}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
+      {!isMobile && (
+        <div aria-hidden className="organism-background">
+          {[0, 1].map((organismIndex) => (
+            <div className={`organism ${organismIndex === 0 ? "organism--mirror" : ""}`} key={organismIndex}>
+              {atomIndexes.map((index) => (
+                <div
+                  className="atom"
+                  key={index}
+                  style={{ "--i": index } as CSSProperties}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
 
-      <nav className="fixed top-0 z-50 w-full backdrop-blur-md">
+      <nav className="fixed top-0 z-50 w-full bg-[#1f4f4f]/70 backdrop-blur-sm md:bg-transparent md:backdrop-blur-md">
         <div className="flex items-center justify-between px-4 py-4 transition-all duration-500 sm:px-6 md:px-16 md:py-6">
           <div className="nike-depth font-headline text-lg font-bold uppercase tracking-[0.16em] text-white sm:text-2xl sm:tracking-[0.2em]">
           COGNULL
@@ -172,7 +176,7 @@ const Index = () => {
             ["04", "Escala", "Foco total na saúde do projeto a longo prazo. Desenvolvemos observabilidade para garantir suporte ágil e uma estrutura preparada para escalar, acompanhando cada nova etapa de crescimento da sua empresa."],
           ].map(([numero, titulo, descricao]) => (
             <div
-              className="nike-depth glass-panel group rounded-2xl p-7 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A] sm:p-10"
+              className="nike-depth glass-panel group rounded-2xl p-7 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A] motion-reduce:transition-none sm:p-10"
               key={titulo}
             >
               <div className="mb-6 font-headline text-4xl font-bold text-white transition-colors group-hover:text-black sm:mb-8 sm:text-5xl">
@@ -188,7 +192,7 @@ const Index = () => {
       </section>
 
       <section className="relative overflow-hidden bg-transparent px-4 py-20 sm:px-6 md:px-16 md:py-32" id="services">
-        <div className="absolute bottom-0 left-[-10%] h-[600px] w-[600px] rounded-full bg-secondary/5 blur-[150px]" />
+        <div className="absolute bottom-0 left-[-10%] hidden h-[600px] w-[600px] rounded-full bg-secondary/5 blur-[150px] md:block" />
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div className="space-y-8 lg:sticky lg:top-28">
             <div className="space-y-4">
@@ -271,7 +275,7 @@ const Index = () => {
             },
             {
               iniciais: "LP",
-              nome: "Luccas Pontes",
+              nome: "Lucca Pontes",
               cargo: "Fundador",
               descricao:
                 "Mente estratégica focada em encontrar o caminho mais inteligente para sistemas que precisam de escala e segurança.",
@@ -341,7 +345,7 @@ const Index = () => {
           </p>
           <button
             onClick={() => setIsContactModalOpen(true)}
-            className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-8 py-5 font-headline text-[10px] font-bold uppercase tracking-[0.25em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] sm:px-12 sm:py-7 sm:text-xs sm:tracking-[0.35em] md:px-16 md:py-8 md:tracking-[0.4em]"
+            className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-8 py-5 font-headline text-[10px] font-bold uppercase tracking-[0.25em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] motion-reduce:transition-none sm:px-12 sm:py-7 sm:text-xs sm:tracking-[0.35em] md:px-16 md:py-8 md:tracking-[0.4em]"
             type="button"
           >
             <span className="relative z-10">Comece por Aqui</span>
@@ -353,7 +357,7 @@ const Index = () => {
       {isContactModalOpen && (
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4" onClick={() => setIsContactModalOpen(false)}>
           <div
-            className="w-full max-w-6xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.9)] p-8 shadow-2xl backdrop-blur-md"
+            className="w-full max-w-6xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
@@ -380,7 +384,7 @@ const Index = () => {
           onClick={() => setIsPrivacyModalOpen(false)}
         >
           <div
-            className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.94)] p-8 shadow-2xl backdrop-blur-md"
+            className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-8 flex items-center justify-between gap-4">
@@ -435,7 +439,7 @@ const Index = () => {
           onClick={() => setIsTermsModalOpen(false)}
         >
           <div
-            className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.94)] p-8 shadow-2xl backdrop-blur-md"
+            className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-8 flex items-center justify-between gap-4">
