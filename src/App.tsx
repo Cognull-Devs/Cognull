@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import Index from "./pages/Index";
-import Formulario from "./pages/Formulario";
 
+const Formulario = lazy(() => import("./pages/Formulario"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const pathname = typeof window !== "undefined" ? window.location.pathname : "/";
@@ -12,7 +12,11 @@ const App = () => {
   }
 
   if (pathname === "/formulario" || pathname === "/formulario/") {
-    return <Formulario />;
+    return (
+      <Suspense fallback={null}>
+        <Formulario />
+      </Suspense>
+    );
   }
 
   return (

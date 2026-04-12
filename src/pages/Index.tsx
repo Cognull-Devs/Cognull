@@ -125,7 +125,7 @@ const Index = () => {
             COGNULL: ESCALANDO O <span className="text-[#3DFF2A]">CONHECIMENTO</span>
           </h1>
           <p className="mb-8 max-w-2xl text-base font-normal leading-relaxed text-on-surface-variant sm:text-lg md:mb-12 md:text-2xl">
-            Consultoria de software e solucoes de alto desempenho para o seu business.
+            Conhecimento aplicado, resultado inevitável.
           </p>
           <div className="flex flex-wrap items-center gap-4 md:gap-6">
             <a
