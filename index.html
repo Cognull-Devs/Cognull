@@ -8,6 +8,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzrtdWtoYeA7w4sP.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="https://fonts.gstatic.com/s/ibmplexsans/v19/zYXzKVElM_BxU3Zw6L96pmDXWal1SLb7QWGVmX6tmmQ.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      body { margin: 0; padding: 0; font-family: system-ui, sans-serif; background: #305c5c; }
+      #root { display: block; min-height: 100vh; }
+    </style>
+    <script>
+      // Intercept CSS injection by Vite and load non-blocking
+      (function() {
+        var cssLoaded = false;
+        function makeCSSNonBlocking(link) {
+          if (link.tagName === 'LINK' && (link.rel === 'stylesheet' || link.rel === 'import')) {
+            link.media = 'print';
+            link.onload = link.onerror = function() {
+              link.media = 'all';
+              cssLoaded = true;
+            };
+          }
+        }
+        // Observe for CSS links added to head (Vite injection)
+        new MutationObserver(function(mutations) {
+          mutations.forEach(function(m) {
+            if (m.addedNodes.length) {
+              m.addedNodes.forEach(function(node) {
+                if (node.nodeType === 1) makeCSSNonBlocking(node);
+              });
+            }
+          });
+        }).observe(document.head, { childList: true, subtree: true });
+      })();
+    </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" /></noscript>
     <title>Cognull | Desenvolvimento de Software e Consultoria</title>
@@ -27,6 +56,6 @@
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" defer src="/src/main.tsx"></script>
   </body>
 </html>
