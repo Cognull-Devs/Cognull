@@ -44,6 +44,7 @@ const Index = () => {
 
   return (
     <div className="relative isolate bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
+      <main>
       {!isMobile && (
         <div aria-hidden className="organism-background">
           {[0, 1].map((organismIndex) => (
@@ -60,7 +61,7 @@ const Index = () => {
         </div>
       )}
 
-      <nav className="fixed top-0 z-50 w-full bg-[#1f4f4f]/70 backdrop-blur-sm md:bg-transparent md:backdrop-blur-md">
+      <nav className="fixed top-0 z-50 w-full bg-[#1f4f4f]/70 md:bg-transparent md:backdrop-blur-md">
         <div className="flex items-center justify-between px-4 py-4 transition-all duration-500 sm:px-6 md:px-16 md:py-6">
           <div className="nike-depth font-headline text-lg font-bold uppercase tracking-[0.16em] text-white sm:text-2xl sm:tracking-[0.2em]">
           COGNULL
@@ -182,7 +183,7 @@ const Index = () => {
               <div className="mb-6 font-headline text-4xl font-bold text-white transition-colors group-hover:text-black sm:mb-8 sm:text-5xl">
                 {numero}
               </div>
-              <h4 className="mb-3 font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-black sm:mb-4 sm:text-2xl">{titulo}</h4>
+              <h3 className="mb-3 font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-black sm:mb-4 sm:text-2xl">{titulo}</h3>
               <p className="text-sm leading-relaxed text-white transition-colors group-hover:text-black">
                 {descricao}
               </p>
@@ -232,9 +233,9 @@ const Index = () => {
                     {numero}
                   </div>
                   <div className="flex flex-col gap-3 border-b border-white/10 pb-10 transition-colors group-hover:border-[#3DFF2A]/40">
-                    <h5 className="font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-white sm:text-2xl">
+                    <h3 className="font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-white sm:text-2xl">
                       {title}
-                    </h5>
+                    </h3>
                     <p className="max-w-3xl text-sm leading-relaxed text-white/80 transition-colors group-hover:text-white">
                       {description}
                     </p>
@@ -299,15 +300,16 @@ const Index = () => {
               <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-b from-[#49d86a] to-[#2fa14d] font-headline text-2xl text-white sm:mb-8 sm:h-14 sm:w-14 sm:text-3xl">
                 {membro.iniciais}
               </div>
-              <h5 className="mb-1 text-2xl font-headline text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-4xl">
+              <h4 className="mb-1 text-2xl font-headline text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-4xl">
                 {membro.nome}
-              </h5>
+              </h4>
               <p className="mb-6 text-lg font-label tracking-tight text-white sm:mb-8 sm:text-2xl">{membro.cargo}</p>
               <p className="flex-1 text-base leading-relaxed text-white sm:text-xl">{membro.descricao}</p>
 
               <div className="mt-8 border-t border-primary/40 pt-7">
                 <div className="flex gap-4">
                   <a
+                    aria-label={`LinkedIn de ${membro.nome}`}
                     className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white sm:h-14 sm:w-14"
                     href={membro.linkedin}
                     rel="noopener noreferrer"
@@ -316,6 +318,7 @@ const Index = () => {
                     <Linkedin className="h-6 w-6 sm:h-7 sm:w-7" />
                   </a>
                   <a
+                    aria-label={`GitHub de ${membro.nome}`}
                     className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/50 text-white transition-colors hover:border-primary hover:text-white sm:h-14 sm:w-14"
                     href={membro.github}
                     rel="noopener noreferrer"
@@ -493,6 +496,7 @@ const Index = () => {
         </div>
       )}
 
+      </main>
       <footer className="w-full border-t border-black/5 bg-transparent px-4 py-8 sm:px-6 md:px-16">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 text-left md:flex-row md:items-center md:text-center">
           <div className="font-headline text-base font-bold uppercase tracking-[0.14em] text-white sm:text-lg sm:tracking-[0.18em]">
