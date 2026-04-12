@@ -19,9 +19,15 @@
 2. Clique em **Create New Template**
 3. Configure o template com estas variáveis:
    ```
-   Nome: {{from_name}}
-   Email: {{from_email}}
-   Mensagem: {{message}}
+   Nome da empresa: {{company_name}}
+   Cargo: {{role}}
+   Telefone: {{phone}}
+   Setor da empresa: {{company_sector}}
+   Nome do contato: {{contact_name}}
+   Descrição da empresa: {{company_description}}
+   Dores a resolver: {{pains}}
+   Áreas para inovação: {{innovation_areas}}
+   Enviado em: {{submitted_at}}
    ```
 4. Personalize o assunto e corpo do email como preferir
 5. Copie o **Template ID**
@@ -46,8 +52,9 @@ npm run dev
 ```
 
 ## Testando
-1. Preencha o formulário de contato no site
-2. Clique em "Enviar Mensagem"
+1. Acesse `/formulario` no site
+2. Preencha o formulário "Comece por aqui"
+3. Clique em "Enviar formulário"
 3. Verifique sua caixa de entrada do Gmail
 
 ## Importante

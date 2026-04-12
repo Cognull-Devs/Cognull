@@ -32,38 +32,7 @@ const Linkedin = ({ className }: IconProps) => (
 const ATOM_COUNT = 75;
 const atomIndexes = Array.from({ length: ATOM_COUNT }, (_, index) => index);
 
-const whatsappContacts = [
-  {
-    nome: "Nicolas",
-    area: "Arquitetura & Solucoes",
-    numero: "5563984648255",
-  },
-  {
-    nome: "Lucca",
-    area: "Experiencia Digital",
-    numero: "5563981066558",
-  },
-  {
-    nome: "Caua",
-    area: "Sistemas Inteligentes",
-    numero: "5512997042612",
-  },
-  {
-    nome: "Gabriel Grande",
-    area: "Banco de Dados e Infraestrutura",
-    numero: "553498110985",
-  },
-];
-
-const createWhatsAppLink = (numero: string, nome: string) => {
-  const mensagem = encodeURIComponent(
-    `Ola, ${nome}! Vim pelo site da Cognull e quero iniciar uma consultoria.`,
-  );
-  return `https://wa.me/${numero}?text=${mensagem}`;
-};
-
 const Index = () => {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -373,40 +342,15 @@ const Index = () => {
           <p className="mx-auto mb-10 max-w-2xl text-base font-normal text-on-surface-variant md:mb-16 md:text-lg">
             Inicie sua jornada hoje. Nossa equipe esta pronta para o impactar o seu negócio.
           </p>
-          <button
-            onClick={() => setIsContactModalOpen(true)}
+          <a
+            href="/formulario"
             className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-8 py-5 font-headline text-[10px] font-bold uppercase tracking-[0.25em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] motion-reduce:transition-none sm:px-12 sm:py-7 sm:text-xs sm:tracking-[0.35em] md:px-16 md:py-8 md:tracking-[0.4em]"
-            type="button"
           >
             <span className="relative z-10">Comece por Aqui</span>
             <span className="absolute inset-0 translate-y-full bg-[#E9FFE6] transition-transform duration-500 group-hover:translate-y-0" />
-          </button>
+          </a>
         </div>
       </section>
-
-      {isContactModalOpen && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4" onClick={() => setIsContactModalOpen(false)}>
-          <div
-            className="w-full max-w-6xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-              {whatsappContacts.map((contato) => (
-                <a
-                  className="rounded-2xl border border-transparent bg-[#8BAEB4]/85 px-5 py-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#44EA4A]/40 hover:bg-[rgba(64,94,98,0.98)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)] md:px-6 md:py-7"
-                  href={createWhatsAppLink(contato.numero, contato.nome)}
-                  key={contato.nome}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <p className="mb-2 font-headline text-2xl text-white md:text-4xl">{contato.nome}</p>
-                  <p className="font-label text-xs uppercase tracking-[0.2em] text-white md:text-sm md:tracking-[0.3em]">{contato.area}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {isPrivacyModalOpen && (
         <div
