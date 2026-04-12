@@ -1,16 +1,4 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "Erro 404: o usuario tentou acessar uma rota inexistente:",
-      location.pathname,
-    );
-  }, [location.pathname]);
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <div className="text-center">
