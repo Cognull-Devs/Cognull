@@ -1,10 +1,18 @@
+import { Suspense, lazy } from "react";
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const isNotFoundRoute = typeof window !== "undefined" && window.location.pathname !== "/";
 
 const App = () => (
-  isNotFoundRoute ? <NotFound /> : <Index />
+  isNotFoundRoute
+    ? (
+      <Suspense fallback={null}>
+        <NotFound />
+      </Suspense>
+    )
+    : <Index />
 );
 
 export default App;

@@ -1,6 +1,33 @@
-import { Github, Linkedin, Menu, X } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+type IconProps = {
+  className?: string;
+};
+
+const Menu = ({ className }: IconProps) => (
+  <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+  </svg>
+);
+
+const X = ({ className }: IconProps) => (
+  <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+  </svg>
+);
+
+const Github = ({ className }: IconProps) => (
+  <svg aria-hidden="true" className={className} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.1.68-.21.68-.47v-1.66c-2.78.6-3.37-1.34-3.37-1.34-.45-1.14-1.1-1.45-1.1-1.45-.9-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.33 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.26-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03a9.6 9.6 0 0 1 5 0c1.9-1.3 2.74-1.03 2.74-1.03.55 1.38.2 2.4.1 2.66.64.7 1.03 1.6 1.03 2.69 0 3.84-2.35 4.69-4.59 4.94.36.31.68.93.68 1.88v2.78c0 .26.18.57.69.47A10 10 0 0 0 12 2Z" />
+  </svg>
+);
+
+const Linkedin = ({ className }: IconProps) => (
+  <svg aria-hidden="true" className={className} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.94 8.5A1.56 1.56 0 1 1 6.93 5.4a1.56 1.56 0 0 1 .01 3.1ZM5.6 18.6h2.66V9.56H5.6V18.6Zm4.18 0h2.65v-4.7c0-1.24.24-2.44 1.77-2.44 1.5 0 1.52 1.4 1.52 2.52v4.62h2.66v-5.16c0-2.54-.55-4.49-3.52-4.49-1.43 0-2.39.78-2.78 1.52h-.04V9.56H9.78c.03.66 0 9.04 0 9.04Z" />
+  </svg>
+);
 
 const ATOM_COUNT = 75;
 const atomIndexes = Array.from({ length: ATOM_COUNT }, (_, index) => index);
