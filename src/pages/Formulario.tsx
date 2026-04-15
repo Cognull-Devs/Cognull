@@ -29,7 +29,9 @@ const Formulario = () => {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [statusType, setStatusType] = useState<"success" | "error" | null>(null);
+  const [statusType, setStatusType] = useState<"success" | "error" | null>(
+    null,
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -43,9 +45,13 @@ const Formulario = () => {
         return;
       }
 
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       const isSmallScreen = window.innerWidth < 1024;
-      const lowConcurrency = typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+      const lowConcurrency =
+        typeof navigator.hardwareConcurrency === "number" &&
+        navigator.hardwareConcurrency <= 4;
 
       if (prefersReducedMotion || isSmallScreen || lowConcurrency) {
         setAnimationReady(false);
@@ -71,7 +77,12 @@ const Formulario = () => {
       const scene = new THREE.Scene();
       scene.fog = new THREE.Fog(0x0b3f3f, 80, 190);
 
-      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000,
+      );
       camera.position.set(0, 30, 100);
 
       const container = new THREE.Object3D();
@@ -82,7 +93,11 @@ const Formulario = () => {
       const widthSegments = 72;
       const heightSegments = 72;
       const center = new THREE.Vector3(0, 0, 0);
-      const maxDistance = new THREE.Vector3(width * 0.5, 0, height * 0.5).distanceTo(center);
+      const maxDistance = new THREE.Vector3(
+        width * 0.5,
+        0,
+        height * 0.5,
+      ).distanceTo(center);
 
       const pointCount = (widthSegments + 1) * (heightSegments + 1);
       const pointPositions = new Float32Array(pointCount * 3);
@@ -107,7 +122,10 @@ const Formulario = () => {
       }
 
       const pointsGeometry = new THREE.BufferGeometry();
-      pointsGeometry.setAttribute("position", new THREE.BufferAttribute(pointPositions, 3));
+      pointsGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(pointPositions, 3),
+      );
 
       const pointsMaterial = new THREE.PointsMaterial({
         color: 0x3dff2a,
@@ -121,12 +139,22 @@ const Formulario = () => {
       const dots = new THREE.Points(pointsGeometry, pointsMaterial);
       container.add(dots);
 
-      const planeGeometry = new THREE.PlaneGeometry(width * 2, height * 2, widthSegments, heightSegments);
+      const planeGeometry = new THREE.PlaneGeometry(
+        width * 2,
+        height * 2,
+        widthSegments,
+        heightSegments,
+      );
       planeGeometry.rotateX(-Math.PI * 0.5);
 
-      const planePositions = planeGeometry.attributes.position.array as Float32Array;
-      const planeRatios = new Float32Array(planeGeometry.attributes.position.count);
-      const planeDistances = new Float32Array(planeGeometry.attributes.position.count);
+      const planePositions = planeGeometry.attributes.position
+        .array as Float32Array;
+      const planeRatios = new Float32Array(
+        planeGeometry.attributes.position.count,
+      );
+      const planeDistances = new Float32Array(
+        planeGeometry.attributes.position.count,
+      );
 
       for (let i = 0; i < planeGeometry.attributes.position.count; i += 1) {
         const x = planePositions[i * 3];
@@ -186,22 +214,25 @@ const Formulario = () => {
           return;
         }
 
-        const pointArray = pointsGeometry.attributes.position.array as Float32Array;
+        const pointArray = pointsGeometry.attributes.position
+          .array as Float32Array;
         for (let i = 0; i < pointCount; i += 1) {
-          let ratioA = (pointRatios[i] * ease.depth) + ease.hole;
-          ratioA *= pointRatios[i] * pointRatios[i] * pointRatios[i] * pointRatios[i];
+          let ratioA = pointRatios[i] * ease.depth + ease.hole;
+          ratioA *=
+            pointRatios[i] * pointRatios[i] * pointRatios[i] * pointRatios[i];
           let y = ratioA * -150;
           y = Math.max(y, -10);
-          y += Math.sin(-(pointDistances[i] * 0.74) + (time * 0.00074));
+          y += Math.sin(-(pointDistances[i] * 0.74) + time * 0.00074);
           pointArray[i * 3 + 1] = y;
         }
 
         for (let i = 0; i < planeGeometry.attributes.position.count; i += 1) {
-          let ratioA = (planeRatios[i] * ease.depth) + ease.hole;
-          ratioA *= planeRatios[i] * planeRatios[i] * planeRatios[i] * planeRatios[i];
+          let ratioA = planeRatios[i] * ease.depth + ease.hole;
+          ratioA *=
+            planeRatios[i] * planeRatios[i] * planeRatios[i] * planeRatios[i];
           let y = ratioA * -150;
           y = Math.max(y, -10);
-          y += Math.sin(-(planeDistances[i] * 0.74) + (time * 0.00074));
+          y += Math.sin(-(planeDistances[i] * 0.74) + time * 0.00074);
           planePositions[i * 3 + 1] = y;
         }
 
@@ -259,7 +290,10 @@ const Formulario = () => {
     [formData.companyDescription.length],
   );
 
-  const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) => {
+  const handleChange = <K extends keyof FormData>(
+    field: K,
+    value: FormData[K],
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -274,7 +308,9 @@ const Formulario = () => {
 
     if (!serviceId || !templateId || !publicKey) {
       setStatusType("error");
-      setStatusMessage("Configuração de email incompleta. Defina as variáveis VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID e VITE_EMAILJS_PUBLIC_KEY.");
+      setStatusMessage(
+        "Configuração de email incompleta. Defina as variáveis VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID e VITE_EMAILJS_PUBLIC_KEY.",
+      );
       return;
     }
 
@@ -317,7 +353,9 @@ const Formulario = () => {
       );
 
       setStatusType("success");
-      setStatusMessage("Formulário enviado com sucesso. Em breve entraremos em contato.");
+      setStatusMessage(
+        "Formulário enviado com sucesso. Em breve entraremos em contato.",
+      );
       setFormData(INITIAL_FORM);
     } catch (error: unknown) {
       const details =
@@ -329,7 +367,9 @@ const Formulario = () => {
           : "";
 
       setStatusType("error");
-      setStatusMessage(`Não foi possível enviar agora.${details} Verifique Service ID, Template ID, Public Key e variáveis do template.`);
+      setStatusMessage(
+        `Não foi possível enviar agora.${details} Verifique Service ID, Template ID, Public Key e variáveis do template.`,
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -337,8 +377,18 @@ const Formulario = () => {
 
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-[#0B3F3F] to-[#174A4A] px-4 py-8 sm:px-6 md:px-10 md:py-10">
-      <canvas className={`fixed inset-0 z-0 h-screen w-screen transition-opacity duration-500 ${animationReady ? "opacity-65" : "opacity-0"}`} ref={canvasRef} />
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-20" style={{ backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "104px 104px" }} />
+      <canvas
+        className={`fixed inset-0 z-0 h-screen w-screen transition-opacity duration-500 ${animationReady ? "opacity-65" : "opacity-0"}`}
+        ref={canvasRef}
+      />
+      <div
+        className="pointer-events-none fixed inset-0 z-0 opacity-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "104px 104px",
+        }}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl pb-8">
         <div className="mb-6 flex justify-end">
@@ -352,125 +402,165 @@ const Formulario = () => {
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           <aside className="p-2 sm:p-3 lg:min-h-[720px]">
-            <p className="font-headline text-4xl font-bold tracking-tight text-[#3DFF2A] sm:text-5xl">Cognull</p>
+            <div className="flex items-center gap-3">
+              <img
+                alt="Logo da Cognull"
+                className="h-14 w-auto sm:h-16"
+                src="/cognull.png"
+              />
+              <p className="font-headline text-4xl font-bold tracking-tight text-[#3DFF2A] uppercase sm:text-5xl">
+                COGNULL
+              </p>
+            </div>
             <p className="mt-6 max-w-xl text-xl leading-tight text-white sm:text-3xl">
-              Preencha o formulário para que possamos entender você e lhe ajudar da melhor forma possível.
+              Preencha o formulário para que possamos entender você e lhe ajudar
+              da melhor forma possível.
             </p>
           </aside>
 
-          <form className="border-l border-white/15 pl-0 sm:pl-0 md:grid md:grid-cols-2 md:gap-5 lg:pl-8" onSubmit={handleSubmit}>
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-semibold text-white">Nome da empresa *</span>
-            <input
-              className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="Nome da Sua Empresa"
-              required
-              value={formData.companyName}
-              onChange={(event) => handleChange("companyName", event.target.value)}
-            />
-          </label>
+          <form
+            className="border-l border-white/15 pl-0 sm:pl-0 md:grid md:grid-cols-2 md:gap-5 lg:pl-8"
+            onSubmit={handleSubmit}
+          >
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-white">
+                Nome da empresa *
+              </span>
+              <input
+                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="Nome da Sua Empresa"
+                required
+                value={formData.companyName}
+                onChange={(event) =>
+                  handleChange("companyName", event.target.value)
+                }
+              />
+            </label>
 
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-semibold text-white">Cargo *</span>
-            <input
-              className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="Head de criação"
-              required
-              value={formData.role}
-              onChange={(event) => handleChange("role", event.target.value)}
-            />
-          </label>
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-white">Cargo *</span>
+              <input
+                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="Head de criação"
+                required
+                value={formData.role}
+                onChange={(event) => handleChange("role", event.target.value)}
+              />
+            </label>
 
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-semibold text-white">Telefone *</span>
-            <input
-              className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="+55 47 99999-9999"
-              required
-              type="tel"
-              value={formData.phone}
-              onChange={(event) => handleChange("phone", event.target.value)}
-            />
-          </label>
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-white">
+                Telefone *
+              </span>
+              <input
+                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="+55 47 99999-9999"
+                required
+                type="tel"
+                value={formData.phone}
+                onChange={(event) => handleChange("phone", event.target.value)}
+              />
+            </label>
 
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-semibold text-white">Setor da empresa *</span>
-            <input
-              className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="Tecnologia"
-              required
-              value={formData.companySector}
-              onChange={(event) => handleChange("companySector", event.target.value)}
-            />
-          </label>
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-semibold text-white">
+                Setor da empresa *
+              </span>
+              <input
+                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="Tecnologia"
+                required
+                value={formData.companySector}
+                onChange={(event) =>
+                  handleChange("companySector", event.target.value)
+                }
+              />
+            </label>
 
-          <label className="flex flex-col gap-2 md:col-span-2">
-            <span className="text-sm font-semibold text-white">Seu nome *</span>
-            <input
-              className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="James Web"
-              required
-              value={formData.contactName}
-              onChange={(event) => handleChange("contactName", event.target.value)}
-            />
-          </label>
+            <label className="flex flex-col gap-2 md:col-span-2">
+              <span className="text-sm font-semibold text-white">
+                Seu nome *
+              </span>
+              <input
+                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="James Web"
+                required
+                value={formData.contactName}
+                onChange={(event) =>
+                  handleChange("contactName", event.target.value)
+                }
+              />
+            </label>
 
-          <label className="flex flex-col gap-2 md:col-span-2">
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-sm font-semibold text-white">Breve descrição da empresa *</span>
-              <span className="text-xs text-white/60">{remainingChars} caracteres</span>
+            <label className="flex flex-col gap-2 md:col-span-2">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-sm font-semibold text-white">
+                  Breve descrição da empresa *
+                </span>
+                <span className="text-xs text-white/60">
+                  {remainingChars} caracteres
+                </span>
+              </div>
+              <textarea
+                className="min-h-[96px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                maxLength={300}
+                placeholder="Descreva em até 300 caracteres"
+                required
+                value={formData.companyDescription}
+                onChange={(event) =>
+                  handleChange("companyDescription", event.target.value)
+                }
+              />
+            </label>
+
+            <label className="flex flex-col gap-2 md:col-span-2">
+              <span className="text-sm font-semibold text-white">
+                Quais são as dores que gostaria de resolver?
+              </span>
+              <textarea
+                className="min-h-[110px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="Ex: Reduzir custos operacionais, melhorar a experiência do cliente, etc."
+                value={formData.pains}
+                onChange={(event) => handleChange("pains", event.target.value)}
+              />
+            </label>
+
+            <label className="flex flex-col gap-2 md:col-span-2">
+              <span className="text-sm font-semibold text-white">
+                Quais são as principais áreas da empresa que precisam de
+                inovação?
+              </span>
+              <textarea
+                className="min-h-[110px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                placeholder="Ex: Vendas, Atendimento ao Cliente, Marketing, etc."
+                value={formData.innovationAreas}
+                onChange={(event) =>
+                  handleChange("innovationAreas", event.target.value)
+                }
+              />
+            </label>
+
+            <div className="md:col-span-2">
+              <button
+                className="w-full rounded-xl bg-[#3DFF2A] px-6 py-4 font-label text-[11px] font-bold uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#E9FFE6] disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={isSubmitting}
+                type="submit"
+              >
+                {isSubmitting ? "Enviando..." : "Enviar formulário"}
+              </button>
             </div>
-            <textarea
-              className="min-h-[96px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              maxLength={300}
-              placeholder="Descreva em até 300 caracteres"
-              required
-              value={formData.companyDescription}
-              onChange={(event) => handleChange("companyDescription", event.target.value)}
-            />
-          </label>
 
-          <label className="flex flex-col gap-2 md:col-span-2">
-            <span className="text-sm font-semibold text-white">Quais são as dores que gostaria de resolver?</span>
-            <textarea
-              className="min-h-[110px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="Ex: Reduzir custos operacionais, melhorar a experiência do cliente, etc."
-              value={formData.pains}
-              onChange={(event) => handleChange("pains", event.target.value)}
-            />
-          </label>
-
-          <label className="flex flex-col gap-2 md:col-span-2">
-            <span className="text-sm font-semibold text-white">Quais são as principais áreas da empresa que precisam de inovação?</span>
-            <textarea
-              className="min-h-[110px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
-              placeholder="Ex: Vendas, Atendimento ao Cliente, Marketing, etc."
-              value={formData.innovationAreas}
-              onChange={(event) => handleChange("innovationAreas", event.target.value)}
-            />
-          </label>
-
-          <div className="md:col-span-2">
-            <button
-              className="w-full rounded-xl bg-[#3DFF2A] px-6 py-4 font-label text-[11px] font-bold uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#E9FFE6] disabled:cursor-not-allowed disabled:opacity-60"
-              disabled={isSubmitting}
-              type="submit"
-            >
-              {isSubmitting ? "Enviando..." : "Enviar formulário"}
-            </button>
-          </div>
-
-          {statusMessage && (
-            <p
-              className={`md:col-span-2 rounded-xl border px-4 py-3 text-sm ${
-                statusType === "success"
-                  ? "border-[#3DFF2A]/40 bg-[#113f2f] text-[#d7ffe8]"
-                  : "border-red-400/30 bg-red-950/35 text-red-200"
-              }`}
-            >
-              {statusMessage}
-            </p>
-          )}
+            {statusMessage && (
+              <p
+                className={`md:col-span-2 rounded-xl border px-4 py-3 text-sm ${
+                  statusType === "success"
+                    ? "border-[#3DFF2A]/40 bg-[#113f2f] text-[#d7ffe8]"
+                    : "border-red-400/30 bg-red-950/35 text-red-200"
+                }`}
+              >
+                {statusMessage}
+              </p>
+            )}
           </form>
         </div>
       </div>

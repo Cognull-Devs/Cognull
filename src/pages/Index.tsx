@@ -187,8 +187,8 @@ const Index = () => {
           )}
         </nav>
 
-        <header className="relative flex min-h-screen items-center overflow-hidden bg-transparent px-4 pt-16 sm:px-6 md:px-16 md:pt-0">
-          <div className="relative z-10 max-w-5xl pt-16 md:pt-20">
+        <header className="relative overflow-hidden bg-transparent px-4 py-14 sm:px-6 md:px-16 md:py-20">
+          <div className="relative z-10 max-w-5xl">
             <div className="mb-6 flex items-center gap-3 md:mb-8 md:gap-4">
               <span className="h-[2px] w-10 bg-[#3DFF2A] md:w-12" />
               <span className="font-label text-[10px] font-bold uppercase tracking-[0.28em] text-[#3DFF2A] md:text-[11px] md:tracking-[0.4em]">
@@ -224,14 +224,14 @@ const Index = () => {
           </div>
         </header>
 
-        <div className="relative h-32 w-full overflow-hidden bg-transparent">
+        <div className="relative h-px w-full overflow-hidden bg-transparent">
           <div className="absolute inset-0 flex items-center justify-center opacity-20">
             <div className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
           </div>
         </div>
 
         <section
-          className="relative bg-transparent px-4 py-20 sm:px-6 md:px-16 md:py-32"
+          className="relative bg-transparent px-4 py-14 sm:px-6 md:px-16 md:py-20"
           id="pipeline"
         >
           <div className="mb-12 flex flex-col items-start justify-between gap-10 md:mb-24 md:flex-row md:gap-12">
@@ -403,7 +403,7 @@ const Index = () => {
               {
                 iniciais: "GG",
                 nome: "Gabriel Grande",
-                cargo: "Cofundador",
+                cargo: "Fundador",
                 descricao:
                   "Traz a ética do trabalho duro e o compromisso de quem trata cada projeto como se fosse o dono do negócio.",
                 linkedin: "https://www.linkedin.com/in/gabrielgrande-dev/",
