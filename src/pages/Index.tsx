@@ -63,12 +63,25 @@ const Linkedin = ({ className }: IconProps) => (
   </svg>
 );
 
+const WhatsApp = ({ className }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    className={className}
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M19.5 4.5A10.48 10.48 0 0 0 12 1C6.48 1 2 5.35 2 10.7c0 1.92.6 3.71 1.64 5.21L2.5 23l7.28-1.9a10.63 10.63 0 0 0 2.22.24C17.52 21.34 22 16.99 22 11.64c0-2.59-1.06-5.01-2.5-7.14Zm-7.5 15.19c-.74 0-1.46-.1-2.14-.3l-.49-.14-4.32 1.13 1.15-4.1-.17-.43a7.95 7.95 0 0 1-.62-3.05c0-4.28 3.63-7.76 8.1-7.76 2.17 0 4.2.82 5.73 2.31a7.55 7.55 0 0 1 2.37 5.45c0 4.28-3.63 7.76-8.1 7.76Zm4.72-5.67c-.26-.13-1.55-.76-1.79-.85-.24-.09-.42-.13-.6.13-.18.26-.69.85-.85 1.02-.16.17-.31.19-.57.06-.26-.13-1.09-.39-2.08-1.25-.77-.69-1.29-1.54-1.44-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.31.39-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.6-1.42-.82-1.94-.22-.53-.44-.46-.6-.47h-.51c-.17 0-.45.06-.69.32-.24.26-.91.89-.91 2.17 0 1.28.93 2.52 1.06 2.7.13.17 1.83 2.77 4.44 3.77.62.24 1.1.38 1.48.49.62.2 1.18.17 1.62.1.49-.07 1.55-.63 1.77-1.24.22-.62.22-1.15.16-1.24-.06-.09-.23-.15-.49-.28Z" />
+  </svg>
+);
+
 const ATOM_COUNT = 75;
 const atomIndexes = Array.from({ length: ATOM_COUNT }, (_, index) => index);
 
 const Index = () => {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
@@ -481,6 +494,89 @@ const Index = () => {
           </div>
         </section>
 
+        {isContactModalOpen && (
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
+            onClick={() => setIsContactModalOpen(false)}
+          >
+            <div
+              className="w-full max-w-2xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mb-8 flex items-center justify-between gap-4">
+                <div>
+                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A]">
+                    Canais de Contato
+                  </span>
+                  <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
+                    Escolha um fundador
+                  </h2>
+                </div>
+                <button
+                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+                  onClick={() => setIsContactModalOpen(false)}
+                  type="button"
+                >
+                  Fechar
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    nome: "Cauã Sarraf Ferri",
+                    cargo: "Fundador",
+                    whatsapp: "5512997042612",
+                  },
+                  {
+                    nome: "Nicolas Marrai",
+                    cargo: "Fundador",
+                    whatsapp: "5563984648255",
+                  },
+                  {
+                    nome: "Gabriel Grande",
+                    cargo: "Fundador",
+                    whatsapp: "553498110985",
+                  },
+                  {
+                    nome: "Lucca Pontes",
+                    cargo: "Fundador",
+                    whatsapp: "556381066558",
+                  },
+                ].map((founder) => (
+                  <a
+                    key={founder.nome}
+                    href={`https://wa.me/${founder.whatsapp}?text=${encodeURIComponent(`Olá, ${founder.nome}! Gostaria de falar com a Cognull.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-[rgba(61,255,42,0.05)] p-5 transition-none hover:border-[#3DFF2A] hover:bg-[rgba(61,255,42,0.15)] hover:shadow-lg md:p-6"
+                    onClick={() => setIsContactModalOpen(false)}
+                  >
+                    <div className="flex min-w-0 items-center gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#3DFF2A] text-black md:h-14 md:w-14">
+                        <WhatsApp className="h-6 w-6 md:h-7 md:w-7" />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="truncate font-headline text-lg font-bold text-white md:text-xl">
+                          {founder.nome}
+                        </h3>
+                        <p className="text-sm text-white/70">{founder.cargo}</p>
+                      </div>
+                    </div>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#3DFF2A] text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-black">
+                      →
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <p className="mt-8 text-center text-xs text-white/50">
+                💬 Clique em um fundador para abrir o WhatsApp
+              </p>
+            </div>
+          </div>
+        )}
+
         {isPrivacyModalOpen && (
           <div
             className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
@@ -612,9 +708,13 @@ const Index = () => {
             <a className="transition-colors hover:text-white" href="#team">
               EQUIPE
             </a>
-            <a className="transition-colors hover:text-white" href="#contact">
+            <button
+              className="transition-colors hover:text-white"
+              onClick={() => setIsContactModalOpen(true)}
+              type="button"
+            >
               CONTATO
-            </a>
+            </button>
             <button
               className="transition-colors hover:text-white"
               onClick={() => setIsPrivacyModalOpen(true)}
