@@ -382,7 +382,7 @@ const Index = () => {
               The Founders
             </h3>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 iniciais: "CS",
@@ -402,16 +402,6 @@ const Index = () => {
                 linkedin:
                   "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
                 github: "https://github.com/NicolasMarrai",
-              },
-              {
-                iniciais: "LP",
-                nome: "Lucca Pontes",
-                cargo: "Fundador",
-                descricao:
-                  "Mente estratégica focada em encontrar o caminho mais inteligente para sistemas que precisam de escala e segurança.",
-                linkedin:
-                  "https://www.linkedin.com/in/lucca-pontes-menezes-engenheiro/",
-                github: "https://github.com/DEVLucca",
               },
               {
                 iniciais: "GG",
@@ -537,11 +527,6 @@ const Index = () => {
                     nome: "Gabriel Grande",
                     cargo: "Fundador",
                     whatsapp: "553498110985",
-                  },
-                  {
-                    nome: "Lucca Pontes",
-                    cargo: "Fundador",
-                    whatsapp: "556381066558",
                   },
                 ].map((founder) => (
                   <a

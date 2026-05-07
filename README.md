@@ -76,7 +76,6 @@ Cognull-Plataforma/
 ## Equipe
 
 - Nicolas Marrai Alves Feitosa - Cofundador
-- Lucca Pontes Menezes - Cofundador
 - Cauã Sarraf Ferri - Cofundador
 - Gabriel Grande Santos - Cofundador
 
