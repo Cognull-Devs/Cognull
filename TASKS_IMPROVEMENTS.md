@@ -24,6 +24,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 ## 1. Categoria: Arquitetura
 
 ### ARQ-1 — Remover (ou efetivamente adotar) a biblioteca shadcn/ui não utilizada
+> ✅ Concluído em 2026-07-07 — optou-se pela opção (a): remoção total. Ver notas de implementação no final da tarefa.
 - **Descrição**: `src/components/ui/` contém 47 arquivos de componentes shadcn/ui (accordion, dialog, sidebar, chart, carousel, form, etc.) e as dependências associadas (~25 pacotes `@radix-ui/*`, `cmdk`, `embla-carousel-react`, `react-day-picker`, `recharts`, `vaul`, `input-otp`, `next-themes`, `react-hook-form`, `@hookform/resolvers`, `zod`, `date-fns`, `sonner`). Uma busca por `@/components/ui` fora da própria pasta `ui` não retornou nenhum resultado: **nada disso é importado pelas páginas reais** (`Index.tsx`, `Formulario.tsx`, `NotFound.tsx`, `App.tsx`).
 - **Impacto**: dependências mortas aumentam a superfície de `npm install`, o tempo de build, o ruído no `npm outdated`/`npm audit`, e confundem qualquer pessoa nova que abrir o projeto achando que esses componentes estão em uso.
 - **Prioridade**: Alta
@@ -38,6 +39,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
   3. Remover do `package.json` as dependências correspondentes aos componentes descartados.
   4. Rodar `npm install` e `npm run build` para validar.
 - **Possíveis impactos**: reduz drasticamente o `node_modules`; nenhum impacto funcional imediato (nada quebra, pois nada é usado); relacionado a ARQ-4, ARQ-5, FE-1.
+- **Notas de implementação**: removidos os 49 arquivos de `src/components/ui/` + `src/hooks/use-toast.ts` (órfão, duplicava `src/components/ui/use-toast.ts`). Removidas 20 dependências do `package.json` (25 `@radix-ui/*`, `@hookform/resolvers`, `cmdk`, `date-fns`, `embla-carousel-react`, `input-otp`, `next-themes`, `react-day-picker`, `react-hook-form`, `react-resizable-panels`, `recharts`, `sonner`, `vaul`, `zod`, `tailwindcss-animate`) — mantidos apenas `class-variance-authority`, `clsx`, `lucide-react`, `tailwind-merge` conforme decidido. `tailwindcss-animate` também foi removido do `plugins` de `tailwind.config.ts` (suas classes `animate-in`/`data-[state=]` só eram usadas pelos componentes shadcn removidos). `npm install` removeu 120 pacotes de `node_modules`. `npm run build` e `npm run lint` passaram sem erros após a limpeza (bundle idêntico, CSS ~0.6kB menor). `components.json` foi mantido intacto para permitir reinstalar componentes pontualmente via `npx shadcn add <componente>` quando ARQ-5/FE-3 forem implementadas. `npm audit` mudou de 7 para 12 vulnerabilidades (todas em devDependencies transitivas do toolchain de build/lint, não no bundle de produção) — resolução esperada de árvore de dependências após a remoção; fica a cargo de **SEC-4** (`npm audit fix`), não tratado aqui para não misturar escopos.
 
 ### ARQ-2 — Extrair conteúdo/dados hardcoded dos componentes de página
 - **Descrição**: listas de workflow (`Index.tsx:262-283`), serviços (`339-355`), founders (`386-415`), contatos do WhatsApp (`515-530`) e textos legais (privacidade/termos) estão todos como literais inline dentro do JSX.
@@ -673,7 +675,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 
 ### 🏗️ Fase 2 — Melhorias de arquitetura
 - ⏳ **TEST-1** — Configurar Vitest + Testing Library *(fundação antes de refatorar)*
-- ⏳ **ARQ-1** — Remover/decidir sobre shadcn/ui e dependências não usadas
+- ✅ **ARQ-1** — Remover/decidir sobre shadcn/ui e dependências não usadas
 - ⏳ **ARQ-2** — Extrair dados hardcoded para `src/data/`
 - ⏳ **ARQ-4** — Resolver dark mode fantasma
 - ⏳ **ARQ-5** — Criar componente `Modal` reutilizável
