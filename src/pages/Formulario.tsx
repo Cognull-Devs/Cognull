@@ -23,6 +23,11 @@ const INITIAL_FORM: FormData = {
   innovationAreas: "",
 };
 
+// Mesmas cores dos tokens Tailwind `teal-900`/`brand` (tailwind.config.ts) — Three.js
+// não tem acesso ao CSS, então os valores são duplicados aqui intencionalmente.
+const SCENE_FOG_COLOR = 0x0b3f3f;
+const SCENE_POINTS_COLOR = 0x3dff2a;
+
 const Formulario = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [animationReady, setAnimationReady] = useState(false);
@@ -75,7 +80,7 @@ const Formulario = () => {
       renderer.setClearColor(0x000000, 0);
 
       const scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(0x0b3f3f, 80, 190);
+      scene.fog = new THREE.Fog(SCENE_FOG_COLOR, 80, 190);
 
       const camera = new THREE.PerspectiveCamera(
         45,
@@ -128,7 +133,7 @@ const Formulario = () => {
       );
 
       const pointsMaterial = new THREE.PointsMaterial({
-        color: 0x3dff2a,
+        color: SCENE_POINTS_COLOR,
         size: 0.74,
         transparent: true,
         opacity: 0.9,
@@ -376,7 +381,7 @@ const Formulario = () => {
   };
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-[#0B3F3F] to-[#174A4A] px-4 py-8 sm:px-6 md:px-10 md:py-10">
+    <main className="relative min-h-screen bg-gradient-to-b from-teal-900 to-teal-800 px-4 py-8 sm:px-6 md:px-10 md:py-10">
       <canvas
         className={`fixed inset-0 z-0 h-screen w-screen transition-opacity duration-500 ${animationReady ? "opacity-65" : "opacity-0"}`}
         ref={canvasRef}
@@ -393,7 +398,7 @@ const Formulario = () => {
       <div className="relative z-10 mx-auto max-w-7xl pb-8">
         <div className="mb-6 flex justify-end">
           <a
-            className="inline-flex items-center rounded-xl border border-white/30 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+            className="inline-flex items-center rounded-xl border border-white/30 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
             href="/"
           >
             Voltar ao site
@@ -408,7 +413,7 @@ const Formulario = () => {
                 className="h-14 w-auto sm:h-16"
                 src="/cognull.png"
               />
-              <p className="font-headline text-4xl font-bold tracking-tight text-[#3DFF2A] uppercase sm:text-5xl">
+              <p className="font-headline text-4xl font-bold tracking-tight text-brand uppercase sm:text-5xl">
                 COGNULL
               </p>
             </div>
@@ -427,7 +432,7 @@ const Formulario = () => {
                 Nome da empresa *
               </span>
               <input
-                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="Nome da Sua Empresa"
                 required
                 value={formData.companyName}
@@ -440,7 +445,7 @@ const Formulario = () => {
             <label className="flex flex-col gap-2">
               <span className="text-sm font-semibold text-white">Cargo *</span>
               <input
-                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="Head de criação"
                 required
                 value={formData.role}
@@ -453,7 +458,7 @@ const Formulario = () => {
                 Telefone *
               </span>
               <input
-                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="+55 47 99999-9999"
                 required
                 type="tel"
@@ -467,7 +472,7 @@ const Formulario = () => {
                 Setor da empresa *
               </span>
               <input
-                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="Tecnologia"
                 required
                 value={formData.companySector}
@@ -482,7 +487,7 @@ const Formulario = () => {
                 Seu nome *
               </span>
               <input
-                className="rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="James Web"
                 required
                 value={formData.contactName}
@@ -502,7 +507,7 @@ const Formulario = () => {
                 </span>
               </div>
               <textarea
-                className="min-h-[96px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="min-h-[96px] rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 maxLength={300}
                 placeholder="Descreva em até 300 caracteres"
                 required
@@ -518,7 +523,7 @@ const Formulario = () => {
                 Quais são as dores que gostaria de resolver?
               </span>
               <textarea
-                className="min-h-[110px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="min-h-[110px] rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="Ex: Reduzir custos operacionais, melhorar a experiência do cliente, etc."
                 value={formData.pains}
                 onChange={(event) => handleChange("pains", event.target.value)}
@@ -531,7 +536,7 @@ const Formulario = () => {
                 inovação?
               </span>
               <textarea
-                className="min-h-[110px] rounded-xl border border-white/20 bg-[#0D2F2F] px-4 py-3 text-white placeholder:text-white/40 focus:border-[#3DFF2A] focus:outline-none"
+                className="min-h-[110px] rounded-xl border border-white/20 bg-teal-950 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand focus:outline-none"
                 placeholder="Ex: Vendas, Atendimento ao Cliente, Marketing, etc."
                 value={formData.innovationAreas}
                 onChange={(event) =>
@@ -542,7 +547,7 @@ const Formulario = () => {
 
             <div className="md:col-span-2">
               <button
-                className="w-full rounded-xl bg-[#3DFF2A] px-6 py-4 font-label text-[11px] font-bold uppercase tracking-[0.24em] text-black transition-colors hover:bg-[#E9FFE6] disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-xl bg-brand px-6 py-4 font-label text-[11px] font-bold uppercase tracking-[0.24em] text-black transition-colors hover:bg-brand-light disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={isSubmitting}
                 type="submit"
               >
@@ -554,7 +559,7 @@ const Formulario = () => {
               <p
                 className={`md:col-span-2 rounded-xl border px-4 py-3 text-sm ${
                   statusType === "success"
-                    ? "border-[#3DFF2A]/40 bg-[#113f2f] text-[#d7ffe8]"
+                    ? "border-brand/40 bg-success-bg text-success-text"
                     : "border-red-400/30 bg-red-950/35 text-red-200"
                 }`}
               >

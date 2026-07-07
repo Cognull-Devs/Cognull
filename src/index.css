@@ -4,77 +4,17 @@
 
 @layer base {
   :root {
-    --on-primary-container: #00363d;
-    --on-tertiary-fixed-variant: #3f4549;
-    --on-tertiary-container: #212529;
-    --outline-variant: #dee2e6;
-    --surface-container-highest: #e9ecef;
-    --primary-container: #00e5ff;
-    --tertiary-fixed: #dfe3e6;
-    --on-tertiary-fixed: #212529;
-    --surface-variant: #f1f3f5;
+    /* Tokens de marca (ver tailwind.config.ts: primary/secondary/background/on-surface-variant) */
     --primary: #00e5ff;
-    --inverse-primary: #00b8cc;
-    --on-primary: #ffffff;
-    --on-background: #000000;
-    --tertiary-fixed-dim: #d0d4d8;
-    --secondary-fixed-dim: #0094ff;
-    --surface-tint: #00e5ff;
-    --on-tertiary: #ffffff;
-    --surface-container-low: #ffffff;
-    --on-primary-fixed-variant: #006c79;
-    --outline: #adb5bd;
-    --secondary-fixed: #7ec8ff;
-    --tertiary: #212529;
-    --on-surface-variant: #ffffff;
-    --on-secondary: #000000;
-    --surface-container: #ffffff;
-    --surface-bright: #f8f9fa;
-    --on-error-container: #690005;
-    --inverse-on-surface: #f8f9fa;
-    --secondary-container: #00a3ff;
-    --background: #305c5c;
-    --inverse-surface: #212529;
     --secondary: #00a3ff;
-    --surface-container-lowest: #ffffff;
-    --surface-dim: #f8f9fa;
-    --error: #fa5252;
-    --on-error: #ffffff;
-    --surface-container-high: #f8f9fa;
-    --primary-fixed: #a6f7ff;
-    --primary-fixed-dim: #00e5ff;
-    --on-secondary-container: #002b52;
-    --on-secondary-fixed-variant: #003f78;
-    --tertiary-container: #343a40;
-    --on-secondary-fixed: #001f3d;
-    --surface: #ffffff;
-    --on-surface: #000000;
-    --on-primary-fixed: #002126;
-    --error-container: #ffccd5;
+    --background: #305c5c;
+    --on-surface-variant: #ffffff;
 
-    /* Tokens legados compatíveis com shadcn/ui */
-    --foreground: 0 0% 0%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
-    --secondary-foreground: 0 0% 0%;
+    /* Tokens legados compatíveis com shadcn/ui, ainda em uso real */
     --muted: 210 17% 96%;
     --muted-foreground: 210 10% 36%;
-    --accent: 186 100% 95%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 94% 65%;
-    --destructive-foreground: 0 0% 100%;
     --border: 210 14% 83%;
-    --input: 210 14% 83%;
-    --ring: 186 100% 45%;
     --radius: 0rem;
-
-    --cyan: 186 100% 45%;
-    --cyan-glow: 186 100% 52%;
-    --purple: 189 100% 45%;
-    --purple-glow: 189 100% 50%;
   }
 }
 
@@ -88,7 +28,7 @@
   }
 
   body {
-    @apply bg-background text-on-surface font-body antialiased;
+    @apply bg-background text-white font-body antialiased;
     overflow-x: hidden;
   }
 

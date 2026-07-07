@@ -90,7 +90,7 @@ const Index = () => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="relative isolate bg-gradient-to-b from-[#305C5C] to-[#336565] font-body text-on-surface-variant selection:bg-primary selection:text-white">
+    <div className="relative isolate bg-gradient-to-b from-teal-600 to-teal-500 font-body text-on-surface-variant selection:bg-primary selection:text-white">
       <main>
         {!isMobile && (
           <div aria-hidden className="organism-background">
@@ -111,7 +111,7 @@ const Index = () => {
           </div>
         )}
 
-        <nav className="fixed top-0 z-50 w-full bg-[#1f4f4f]/70 md:bg-transparent md:backdrop-blur-md">
+        <nav className="fixed top-0 z-50 w-full bg-teal-700/70 md:bg-transparent md:backdrop-blur-md">
           <div className="flex items-center justify-between px-4 py-4 transition-all duration-500 sm:px-6 md:px-16 md:py-6">
             <div className="nike-depth flex items-center gap-2 font-headline text-lg font-bold uppercase tracking-[0.16em] text-white sm:gap-3 sm:text-2xl sm:tracking-[0.2em]">
               <img
@@ -123,25 +123,25 @@ const Index = () => {
             </div>
             <div className="hidden items-center gap-12 font-label text-[10px] uppercase tracking-widest lg:flex">
               <a
-                className="text-white transition-colors hover:text-[#E9FFE6]"
+                className="text-white transition-colors hover:text-brand-light"
                 href="#services"
               >
                 Serviços
               </a>
               <a
-                className="text-white transition-colors hover:text-[#E9FFE6]"
+                className="text-white transition-colors hover:text-brand-light"
                 href="#pipeline"
               >
                 Workflow
               </a>
               <a
-                className="text-white transition-colors hover:text-[#E9FFE6]"
+                className="text-white transition-colors hover:text-brand-light"
                 href="#team"
               >
                 Equipe
               </a>
               <a
-                className="text-white transition-colors hover:text-[#E9FFE6]"
+                className="text-white transition-colors hover:text-brand-light"
                 href="#contact"
               >
                 Contato
@@ -149,7 +149,7 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-2">
               <a
-                className="border-2 border-[#3DFF2A] bg-[#3DFF2A] px-3 py-2 font-label text-[9px] font-bold uppercase tracking-[0.18em] text-black transition-colors duration-300 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] sm:px-6 sm:py-3 sm:text-[10px] sm:tracking-[0.2em]"
+                className="border-2 border-brand bg-brand px-3 py-2 font-label text-[9px] font-bold uppercase tracking-[0.18em] text-black transition-colors duration-300 hover:bg-brand-light hover:text-teal-900 sm:px-6 sm:py-3 sm:text-[10px] sm:tracking-[0.2em]"
                 href="#contact"
               >
                 INICIAR
@@ -169,31 +169,31 @@ const Index = () => {
             </div>
           </div>
           {isMobileMenuOpen && (
-            <div className="border-t border-white/10 bg-[#1f4f4f]/95 px-4 py-4 lg:hidden">
+            <div className="border-t border-white/10 bg-teal-700/95 px-4 py-4 lg:hidden">
               <div className="flex flex-col gap-3 font-label text-[11px] uppercase tracking-[0.2em] text-white">
                 <a
-                  className="transition-colors hover:text-[#E9FFE6]"
+                  className="transition-colors hover:text-brand-light"
                   href="#services"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Serviços
                 </a>
                 <a
-                  className="transition-colors hover:text-[#E9FFE6]"
+                  className="transition-colors hover:text-brand-light"
                   href="#pipeline"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Workflow
                 </a>
                 <a
-                  className="transition-colors hover:text-[#E9FFE6]"
+                  className="transition-colors hover:text-brand-light"
                   href="#team"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Equipe
                 </a>
                 <a
-                  className="transition-colors hover:text-[#E9FFE6]"
+                  className="transition-colors hover:text-brand-light"
                   href="#contact"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -207,21 +207,21 @@ const Index = () => {
         <header className="relative overflow-hidden bg-transparent px-4 py-14 sm:px-6 md:px-16 md:py-20">
           <div className="relative z-10 max-w-5xl">
             <div className="mb-6 flex items-center gap-3 md:mb-8 md:gap-4">
-              <span className="h-[2px] w-10 bg-[#3DFF2A] md:w-12" />
-              <span className="font-label text-[10px] font-bold uppercase tracking-[0.28em] text-[#3DFF2A] md:text-[11px] md:tracking-[0.4em]">
+              <span className="h-[2px] w-10 bg-brand md:w-12" />
+              <span className="font-label text-[10px] font-bold uppercase tracking-[0.28em] text-brand md:text-[11px] md:tracking-[0.4em]">
                 Feito Sob Medida
               </span>
             </div>
             <h1 className="mb-6 font-headline text-[clamp(2.25rem,11vw,8rem)] font-bold uppercase leading-[0.9] tracking-tighter text-white md:mb-10 md:leading-[0.85]">
               COGNULL: ESCALANDO O{" "}
-              <span className="text-[#3DFF2A]">CONHECIMENTO</span>
+              <span className="text-brand">CONHECIMENTO</span>
             </h1>
             <p className="mb-8 max-w-2xl text-base font-normal leading-relaxed text-on-surface-variant sm:text-lg md:mb-12 md:text-2xl">
               Conhecimento aplicado, resultado inevitável.
             </p>
             <div className="flex flex-wrap items-center gap-4 md:gap-6">
               <a
-                className="bg-[#3DFF2A] px-7 py-4 font-label text-[10px] font-bold uppercase tracking-[0.18em] text-black shadow-xl transition-all hover:bg-[#E9FFE6] hover:text-[#0B3F3F] sm:px-10 sm:py-5 sm:text-xs md:px-12 md:py-6 md:tracking-[0.2em]"
+                className="bg-brand px-7 py-4 font-label text-[10px] font-bold uppercase tracking-[0.18em] text-black shadow-xl transition-all hover:bg-brand-light hover:text-teal-900 sm:px-10 sm:py-5 sm:text-xs md:px-12 md:py-6 md:tracking-[0.2em]"
                 href="#contact"
               >
                 Fale Conosco
@@ -230,7 +230,7 @@ const Index = () => {
                 className="group flex items-center gap-3 font-label text-[10px] font-bold uppercase tracking-[0.16em] text-white sm:gap-4 sm:text-xs sm:tracking-[0.2em]"
                 href="#pipeline"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#3DFF2A] text-[#3DFF2A] transition-colors group-hover:border-[#E9FFE6] group-hover:text-[#E9FFE6]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-brand text-brand transition-colors group-hover:border-brand-light group-hover:text-brand-light">
                   <span className="material-symbols-outlined text-sm">
                     play_arrow
                   </span>
@@ -253,7 +253,7 @@ const Index = () => {
         >
           <div className="mb-12 flex flex-col items-start justify-between gap-10 md:mb-24 md:flex-row md:gap-12">
             <div>
-              <span className="mb-3 block font-label text-[10px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A] md:mb-4 md:text-xs md:tracking-[0.5em]">
+              <span className="mb-3 block font-label text-[10px] font-bold uppercase tracking-[0.35em] text-brand md:mb-4 md:text-xs md:tracking-[0.5em]">
                 Nosso Workflow
               </span>
               <h2 className="font-headline text-3xl font-bold uppercase tracking-tighter text-white sm:text-4xl md:text-6xl">
@@ -265,7 +265,7 @@ const Index = () => {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {workflowSteps.map(({ numero, titulo, descricao }) => (
               <div
-                className="nike-depth glass-panel group rounded-2xl p-7 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A] motion-reduce:transition-none sm:p-10"
+                className="nike-depth glass-panel group rounded-2xl p-7 shadow-sm transition-all duration-500 hover:bg-brand motion-reduce:transition-none sm:p-10"
                 key={titulo}
               >
                 <div className="mb-6 font-headline text-4xl font-bold text-white transition-colors group-hover:text-black sm:mb-8 sm:text-5xl">
@@ -293,7 +293,7 @@ const Index = () => {
                 <h2 className="font-headline text-4xl font-bold uppercase leading-[0.94] tracking-tighter text-white sm:text-5xl md:text-7xl md:leading-[0.92]">
                   Pensado para
                   <br />
-                  <span className="text-[#3DFF2A]">Performance.</span>
+                  <span className="text-brand">Performance.</span>
                 </h2>
               </div>
 
@@ -308,30 +308,30 @@ const Index = () => {
                 não linear, não estático, mas em constante construção.
               </p>
 
-              <div className="flex items-center gap-4 border-l-2 border-[#3DFF2A] pl-4">
-                <span className="font-label text-[10px] uppercase tracking-[0.35em] text-[#3DFF2A]">
+              <div className="flex items-center gap-4 border-l-2 border-brand pl-4">
+                <span className="font-label text-[10px] uppercase tracking-[0.35em] text-brand">
                   Estratégia • Execução • Escala
                 </span>
               </div>
             </div>
 
             <div className="relative">
-              <div className="absolute left-3 top-0 h-full w-px bg-gradient-to-b from-[#3DFF2A] via-[#3DFF2A]/40 to-transparent sm:left-6" />
+              <div className="absolute left-3 top-0 h-full w-px bg-gradient-to-b from-brand via-brand/40 to-transparent sm:left-6" />
 
               <div className="space-y-10 pl-10 sm:pl-16">
                 {services.map(({ numero, title, description }) => (
                   <div className="group relative pb-10" key={title}>
-                    <div className="absolute -left-10 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-[#3DFF2A]/60 bg-[#0B3F3F] font-headline text-base text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-[#0B3F3F] sm:-left-16 sm:h-12 sm:w-12 sm:text-lg">
+                    <div className="absolute -left-10 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-brand/60 bg-teal-900 font-headline text-base text-brand transition-colors group-hover:bg-brand group-hover:text-teal-900 sm:-left-16 sm:h-12 sm:w-12 sm:text-lg">
                       {numero}
                     </div>
-                    <div className="flex flex-col gap-3 border-b border-white/10 pb-10 transition-colors group-hover:border-[#3DFF2A]/40">
+                    <div className="flex flex-col gap-3 border-b border-white/10 pb-10 transition-colors group-hover:border-brand/40">
                       <h3 className="font-headline text-xl font-bold uppercase text-white transition-colors group-hover:text-white sm:text-2xl">
                         {title}
                       </h3>
                       <p className="max-w-3xl text-sm leading-relaxed text-white/80 transition-colors group-hover:text-white">
                         {description}
                       </p>
-                      <div className="mt-2 h-px w-24 bg-[#3DFF2A]/60 transition-all group-hover:w-40 group-hover:bg-[#E9FFE6]" />
+                      <div className="mt-2 h-px w-24 bg-brand/60 transition-all group-hover:w-40 group-hover:bg-brand-light" />
                     </div>
                   </div>
                 ))}
@@ -352,10 +352,10 @@ const Index = () => {
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {founders.map((membro) => (
               <article
-                className="flex min-h-[420px] flex-col rounded-3xl border border-primary/35 bg-[rgba(11,63,63,0.28)] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-colors hover:border-[#3DFF2A] sm:min-h-[520px] sm:p-8"
+                className="flex min-h-[420px] flex-col rounded-3xl border border-primary/35 bg-teal-900/[0.28] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-colors hover:border-brand sm:min-h-[520px] sm:p-8"
                 key={membro.nome}
               >
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-b from-[#49d86a] to-[#2fa14d] font-headline text-2xl text-white sm:mb-8 sm:h-14 sm:w-14 sm:text-3xl">
+                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-b from-avatar-start to-avatar-end font-headline text-2xl text-white sm:mb-8 sm:h-14 sm:w-14 sm:text-3xl">
                   {membro.iniciais}
                 </div>
                 <h4 className="mb-1 text-2xl font-headline text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)] sm:text-4xl">
@@ -406,7 +406,7 @@ const Index = () => {
             <h2 className="mb-10 font-headline text-[clamp(2.5rem,8vw,5.5rem)] font-bold uppercase leading-[1.06] tracking-tighter text-white">
               Preparado Para
               <br />
-              <span className="text-[#3DFF2A]">O Próximo Nível?</span>
+              <span className="text-brand">O Próximo Nível?</span>
             </h2>
             <p className="mx-auto mb-10 max-w-2xl text-base font-normal text-on-surface-variant md:mb-16 md:text-lg">
               Inicie sua jornada hoje. Nossa equipe esta pronta para o impactar
@@ -414,10 +414,10 @@ const Index = () => {
             </p>
             <a
               href="/formulario"
-              className="group relative inline-block overflow-hidden bg-[#3DFF2A] px-8 py-5 font-headline text-[10px] font-bold uppercase tracking-[0.25em] text-black shadow-2xl transition-all duration-500 hover:bg-[#E9FFE6] hover:text-[#0B3F3F] motion-reduce:transition-none sm:px-12 sm:py-7 sm:text-xs sm:tracking-[0.35em] md:px-16 md:py-8 md:tracking-[0.4em]"
+              className="group relative inline-block overflow-hidden bg-brand px-8 py-5 font-headline text-[10px] font-bold uppercase tracking-[0.25em] text-black shadow-2xl transition-all duration-500 hover:bg-brand-light hover:text-teal-900 motion-reduce:transition-none sm:px-12 sm:py-7 sm:text-xs sm:tracking-[0.35em] md:px-16 md:py-8 md:tracking-[0.4em]"
             >
               <span className="relative z-10">Comece por Aqui</span>
-              <span className="absolute inset-0 translate-y-full bg-[#E9FFE6] transition-transform duration-500 group-hover:translate-y-0" />
+              <span className="absolute inset-0 translate-y-full bg-brand-light transition-transform duration-500 group-hover:translate-y-0" />
             </a>
           </div>
         </section>
@@ -428,12 +428,12 @@ const Index = () => {
             onClick={() => setIsContactModalOpen(false)}
           >
             <div
-              className="w-full max-w-2xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
+              className="w-full max-w-2xl rounded-3xl border border-primary/40 bg-teal-900/[0.96] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-8 flex items-center justify-between gap-4">
                 <div>
-                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A]">
+                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-brand">
                     Canais de Contato
                   </span>
                   <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
@@ -441,7 +441,7 @@ const Index = () => {
                   </h2>
                 </div>
                 <button
-                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
                   onClick={() => setIsContactModalOpen(false)}
                   type="button"
                 >
@@ -456,11 +456,11 @@ const Index = () => {
                     href={`https://wa.me/${founder.whatsapp}?text=${encodeURIComponent(`Olá, ${founder.nome}! Gostaria de falar com a Cognull.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-[rgba(61,255,42,0.05)] p-5 transition-none hover:border-[#3DFF2A] hover:bg-[rgba(61,255,42,0.15)] hover:shadow-lg md:p-6"
+                    className="group flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-brand/5 p-5 transition-none hover:border-brand hover:bg-brand/15 hover:shadow-lg md:p-6"
                     onClick={() => setIsContactModalOpen(false)}
                   >
                     <div className="flex min-w-0 items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#3DFF2A] text-black md:h-14 md:w-14">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand text-black md:h-14 md:w-14">
                         <WhatsApp className="h-6 w-6 md:h-7 md:w-7" />
                       </div>
                       <div className="min-w-0">
@@ -470,7 +470,7 @@ const Index = () => {
                         <p className="text-sm text-white/70">{founder.cargo}</p>
                       </div>
                     </div>
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#3DFF2A] text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-black">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand text-brand transition-colors group-hover:bg-brand group-hover:text-black">
                       →
                     </div>
                   </a>
@@ -490,12 +490,12 @@ const Index = () => {
             onClick={() => setIsPrivacyModalOpen(false)}
           >
             <div
-              className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
+              className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-teal-900/[0.96] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-8 flex items-center justify-between gap-4">
                 <div>
-                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A]">
+                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-brand">
                     Privacidade
                   </span>
                   <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
@@ -503,7 +503,7 @@ const Index = () => {
                   </h2>
                 </div>
                 <button
-                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
                   onClick={() => setIsPrivacyModalOpen(false)}
                   type="button"
                 >
@@ -526,12 +526,12 @@ const Index = () => {
             onClick={() => setIsTermsModalOpen(false)}
           >
             <div
-              className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-[rgba(10,58,58,0.96)] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
+              className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-teal-900/[0.96] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mb-8 flex items-center justify-between gap-4">
                 <div>
-                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-[#3DFF2A]">
+                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-brand">
                     Termos
                   </span>
                   <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
@@ -539,7 +539,7 @@ const Index = () => {
                   </h2>
                 </div>
                 <button
-                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-[#3DFF2A] hover:text-[#E9FFE6]"
+                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
                   onClick={() => setIsTermsModalOpen(false)}
                   type="button"
                 >
@@ -592,7 +592,7 @@ const Index = () => {
             </button>
           </div>
 
-          <div className="text-[9px] uppercase tracking-[0.18em] text-[#E9FFE6] sm:tracking-[0.22em]">
+          <div className="text-[9px] uppercase tracking-[0.18em] text-brand-light sm:tracking-[0.22em]">
             © 2026 COGNULL. ARQUITETANDO INTELIGENCIA.
           </div>
         </div>
