@@ -42,6 +42,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - **Notas de implementação**: removidos os 49 arquivos de `src/components/ui/` + `src/hooks/use-toast.ts` (órfão, duplicava `src/components/ui/use-toast.ts`). Removidas 20 dependências do `package.json` (25 `@radix-ui/*`, `@hookform/resolvers`, `cmdk`, `date-fns`, `embla-carousel-react`, `input-otp`, `next-themes`, `react-day-picker`, `react-hook-form`, `react-resizable-panels`, `recharts`, `sonner`, `vaul`, `zod`, `tailwindcss-animate`) — mantidos apenas `class-variance-authority`, `clsx`, `lucide-react`, `tailwind-merge` conforme decidido. `tailwindcss-animate` também foi removido do `plugins` de `tailwind.config.ts` (suas classes `animate-in`/`data-[state=]` só eram usadas pelos componentes shadcn removidos). `npm install` removeu 120 pacotes de `node_modules`. `npm run build` e `npm run lint` passaram sem erros após a limpeza (bundle idêntico, CSS ~0.6kB menor). `components.json` foi mantido intacto para permitir reinstalar componentes pontualmente via `npx shadcn add <componente>` quando ARQ-5/FE-3 forem implementadas. `npm audit` mudou de 7 para 12 vulnerabilidades (todas em devDependencies transitivas do toolchain de build/lint, não no bundle de produção) — resolução esperada de árvore de dependências após a remoção; fica a cargo de **SEC-4** (`npm audit fix`), não tratado aqui para não misturar escopos.
 
 ### ARQ-2 — Extrair conteúdo/dados hardcoded dos componentes de página
+> ✅ Concluído em 2026-07-07 — ver notas de implementação no final da tarefa.
 - **Descrição**: listas de workflow (`Index.tsx:262-283`), serviços (`339-355`), founders (`386-415`), contatos do WhatsApp (`515-530`) e textos legais (privacidade/termos) estão todos como literais inline dentro do JSX.
 - **Impacto**: qualquer alteração de copy (ex.: trocar telefone de um fundador, adicionar um serviço) exige mexer no componente de apresentação; dificulta futura internacionalização ou migração para CMS; aumenta o tamanho dos componentes.
 - **Prioridade**: Média
@@ -56,6 +57,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
   3. Substituir os arrays inline pelos imports.
   4. Corrigir o bug de dado do WhatsApp do Gabriel neste mesmo passo (ver SEC-5).
 - **Possíveis impactos**: nenhuma mudança visual; abre caminho para testes unitários dos dados (TEST-2).
+- **Notas de implementação**: criados `src/data/founders.ts`, `src/data/workflow.ts`, `src/data/services.ts` e `src/data/legal.ts`. Os founders foram unificados num único array/tipo `Founder` (antes existiam dois arrays redundantes — um para o card da equipe, outro para o modal de contato — cada um repetindo nome/cargo; agora é uma única fonte). O número de WhatsApp do Gabriel Grande foi corrigido de `553498110985` (12 dígitos) para `5534998110985` (13 dígitos, confirmado pelo usuário: `+55 34 99811-0985`) — resolve também **SEC-1** do roadmap. `Index.tsx` caiu de 728 para 604 linhas. Validado com `npm run build` + `npm run lint` (ambos limpos) e com um smoke test visual via Playwright headless: screenshots da home, seção de workflow, serviços, equipe e dos 3 modais (contato/privacidade/termos) conferem pixel a pixel com o comportamento anterior, sem erros no console; o link do modal de contato do Gabriel foi verificado apontando para `https://wa.me/5534998110985`.
 
 ### ARQ-3 — Definir e documentar um único sistema de design tokens
 - **Descrição**: `index.css` define um sistema completo de tokens estilo Material Design 3 (`--surface`, `--tertiary-fixed`, `--on-primary-container` etc., ~50 variáveis) e o `tailwind.config.ts` os expõe como classes (`bg-surface`, `text-on-primary`...). Porém as páginas reais praticamente ignoram esses tokens e usam valores hex arbitrários repetidos (`#3DFF2A`, `#E9FFE6`, `#0B3F3F`, `#305C5C`, `#336565`, `#1f4f4f`, `#174A4A`, `#0D2F2F`...) — dois sistemas de cor coexistindo, nenhum seguido com consistência.
@@ -294,6 +296,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - **Possíveis impactos**: nenhum, desde que o lockfile removido não seja o que está realmente em uso pela Vercel (checar configuração de build da Vercel antes de remover).
 
 ### PERF-6 — Memoizar listas estáticas renderizadas via `.map()`
+> ✅ Concluído em 2026-07-07 — resolvido como efeito colateral de ARQ-2: os arrays agora são constantes de módulo em `src/data/*.ts`, não literais recriados a cada render.
 - **Descrição**: os arrays de workflow/serviços/founders em `Index.tsx` são recriados como literais a cada render (embora não mudem).
 - **Impacto**: hoje irrelevante (a página não re-renderiza com frequência), mas se `isMobileMenuOpen`/modais forem acionados, o componente inteiro (incluindo esses arrays inline) é recriado a cada toggle de estado.
 - **Prioridade**: Baixa
@@ -310,6 +313,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 ## 6. Categoria: Segurança
 
 ### SEC-1 — Corrigir número de WhatsApp incorreto do fundador Gabriel Grande
+> ✅ Concluído em 2026-07-07 — corrigido como parte da implementação de ARQ-2 (dado movido para `src/data/founders.ts`). Número correto confirmado pelo usuário: `+55 34 99811-0985` → `5534998110985`.
 - **Descrição**: em `Index.tsx:529`, o número `553498110985` tem **12 dígitos**, enquanto os outros dois fundadores têm 13 dígitos (`5512997042612` e `5563984648255`). Falta um dígito — muito provavelmente o "9" característico de celulares brasileiros.
 - **Impacto**: o link `https://wa.me/553498110985` pode abrir uma conversa com o número errado ou simplesmente falhar, quebrando silenciosamente o canal de contato de um dos três fundadores — funcionalidade crítica de conversão do site.
 - **Prioridade**: Crítica
@@ -666,7 +670,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 > Ordem pensada para minimizar retrabalho: correções que não podem esperar primeiro, depois fundações (testes/CI) antes de qualquer refatoração grande, depois arquitetura → performance → segurança → UX → refino de código → polimento final.
 
 ### 🔥 Fase 1 — Correções críticas
-- ⏳ **SEC-1** — Corrigir número de WhatsApp do Gabriel Grande (Crítica)
+- ✅ **SEC-1** — Corrigir número de WhatsApp do Gabriel Grande (Crítica)
 - ⏳ **SEO-1** — Corrigir `og:image`/`twitter:image` (Alta)
 - ⏳ **PERF-1** — Remover imagens não utilizadas de `src/assets/` (Alta)
 - ⏳ **SEC-3** — Restringir Public Key do EmailJS por domínio (Alta)
@@ -676,7 +680,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 ### 🏗️ Fase 2 — Melhorias de arquitetura
 - ⏳ **TEST-1** — Configurar Vitest + Testing Library *(fundação antes de refatorar)*
 - ✅ **ARQ-1** — Remover/decidir sobre shadcn/ui e dependências não usadas
-- ⏳ **ARQ-2** — Extrair dados hardcoded para `src/data/`
+- ✅ **ARQ-2** — Extrair dados hardcoded para `src/data/`
 - ⏳ **ARQ-4** — Resolver dark mode fantasma
 - ⏳ **ARQ-5** — Criar componente `Modal` reutilizável
 - ⏳ **PERF-5** — Unificar gerenciador de pacotes (lockfiles)
@@ -687,7 +691,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - ⏳ **PERF-2** — Reduzir/otimizar chunk do Three.js
 - ⏳ **PERF-3** — Otimizar imagens estáticas (`public/`)
 - ⏳ **PERF-4** — Substituir Material Symbols por ícone SVG/lucide
-- ⏳ **PERF-6** — Memoização de listas estáticas (resolvido via ARQ-2)
+- ✅ **PERF-6** — Memoização de listas estáticas (resolvido via ARQ-2)
 
 ### 🔐 Fase 4 — Segurança
 - ⏳ **SEC-2** — Proteção anti-spam no formulário (honeypot/captcha)

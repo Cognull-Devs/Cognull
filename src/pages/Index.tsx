@@ -1,5 +1,9 @@
 import { useState, type CSSProperties } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { founders } from "@/data/founders";
+import { privacyPolicyParagraphs, termsParagraphs } from "@/data/legal";
+import { services } from "@/data/services";
+import { workflowSteps } from "@/data/workflow";
 
 type IconProps = {
   className?: string;
@@ -259,28 +263,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              [
-                "01",
-                "Concepção",
-                "Alinhamos referências e necessidades para iniciar a execução e as primeiras validações no mesmo dia do contato.",
-              ],
-              [
-                "02",
-                "Arquitetura",
-                "Desenvolvemos uma estrutura escalável desde o primeiro passo. Aplicamos boas práticas que garantem performance e flexibilidade.",
-              ],
-              [
-                "03",
-                "Desenvolvimento",
-                "Planejamento com entregas e atualizações semanais. Mantemos você a par de cada passo, com um fluxo interno organizado para garantir ritmo e precisão.",
-              ],
-              [
-                "04",
-                "Escala",
-                "Foco total na saúde do projeto a longo prazo. Desenvolvemos observabilidade para garantir suporte ágil e uma estrutura preparada para escalar, acompanhando cada nova etapa de crescimento da sua empresa.",
-              ],
-            ].map(([numero, titulo, descricao]) => (
+            {workflowSteps.map(({ numero, titulo, descricao }) => (
               <div
                 className="nike-depth glass-panel group rounded-2xl p-7 shadow-sm transition-all duration-500 hover:bg-[#3DFF2A] motion-reduce:transition-none sm:p-10"
                 key={titulo}
@@ -336,23 +319,7 @@ const Index = () => {
               <div className="absolute left-3 top-0 h-full w-px bg-gradient-to-b from-[#3DFF2A] via-[#3DFF2A]/40 to-transparent sm:left-6" />
 
               <div className="space-y-10 pl-10 sm:pl-16">
-                {[
-                  [
-                    "01",
-                    "Design Intuitivo e Fluido",
-                    "Criamos interfaces modernas e fáceis de usar, garantindo que seu cliente tenha uma experiência impecável em qualquer dispositivo, do celular ao computador.",
-                  ],
-                  [
-                    "02",
-                    "Sistemas Ágeis e Seguros",
-                    "Desenvolvemos o motor do seu projeto com foco em velocidade de resposta e proteção total de dados. Assim, garantimos que tudo funcione da melhor forma possível.",
-                  ],
-                  [
-                    "03",
-                    "Infraestrutura Sempre Online",
-                    "O suporte que sua empresa precisa para ir mais longe.",
-                  ],
-                ].map(([numero, title, description]) => (
+                {services.map(({ numero, title, description }) => (
                   <div className="group relative pb-10" key={title}>
                     <div className="absolute -left-10 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-[#3DFF2A]/60 bg-[#0B3F3F] font-headline text-base text-[#3DFF2A] transition-colors group-hover:bg-[#3DFF2A] group-hover:text-[#0B3F3F] sm:-left-16 sm:h-12 sm:w-12 sm:text-lg">
                       {numero}
@@ -383,36 +350,7 @@ const Index = () => {
             </h3>
           </div>
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                iniciais: "CS",
-                nome: "Cauã Sarraf Ferri",
-                cargo: "Fundador",
-                descricao:
-                  "Movido pelo impacto real de converter ideias complexas em ferramentas simples que resolvem problemas do dia a dia.",
-                linkedin: "https://www.linkedin.com/in/cauasarraf/?locale=pt",
-                github: "https://github.com/CauaOdM",
-              },
-              {
-                iniciais: "NM",
-                nome: "Nicolas Marrai",
-                cargo: "Fundador",
-                descricao:
-                  "Transformou a curiosidade de quem desmontava tudo na infância na precisão de quem constrói sistemas hoje.",
-                linkedin:
-                  "https://www.linkedin.com/in/nicolas-marrai-76363b34b/",
-                github: "https://github.com/NicolasMarrai",
-              },
-              {
-                iniciais: "GG",
-                nome: "Gabriel Grande",
-                cargo: "Fundador",
-                descricao:
-                  "Traz a ética do trabalho duro e o compromisso de quem trata cada projeto como se fosse o dono do negócio.",
-                linkedin: "https://www.linkedin.com/in/gabrielgrande-dev/",
-                github: "https://github.com/GabrielGrande-dev",
-              },
-            ].map((membro) => (
+            {founders.map((membro) => (
               <article
                 className="flex min-h-[420px] flex-col rounded-3xl border border-primary/35 bg-[rgba(11,63,63,0.28)] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur-sm transition-colors hover:border-[#3DFF2A] sm:min-h-[520px] sm:p-8"
                 key={membro.nome}
@@ -512,23 +450,7 @@ const Index = () => {
               </div>
 
               <div className="space-y-4">
-                {[
-                  {
-                    nome: "Cauã Sarraf Ferri",
-                    cargo: "Fundador",
-                    whatsapp: "5512997042612",
-                  },
-                  {
-                    nome: "Nicolas Marrai",
-                    cargo: "Fundador",
-                    whatsapp: "5563984648255",
-                  },
-                  {
-                    nome: "Gabriel Grande",
-                    cargo: "Fundador",
-                    whatsapp: "553498110985",
-                  },
-                ].map((founder) => (
+                {founders.map((founder) => (
                   <a
                     key={founder.nome}
                     href={`https://wa.me/${founder.whatsapp}?text=${encodeURIComponent(`Olá, ${founder.nome}! Gostaria de falar com a Cognull.`)}`}
@@ -590,31 +512,9 @@ const Index = () => {
               </div>
 
               <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
-                <p>
-                  A COGNULL coleta apenas as informações necessárias para
-                  responder contatos, entender solicitações e melhorar a
-                  experiência no site.
-                </p>
-                <p>
-                  Quando você entra em contato por formulário, WhatsApp ou
-                  outros canais, podemos armazenar nome, telefone, e-mail e
-                  mensagem para retorno e acompanhamento do atendimento.
-                </p>
-                <p>
-                  Também podemos usar dados de navegação de forma agregada e
-                  anônima para medir desempenho, identificar problemas e
-                  aprimorar o conteúdo do site.
-                </p>
-                <p>
-                  Não vendemos seus dados pessoais. O compartilhamento ocorre
-                  apenas quando necessário para operação, atendimento ou por
-                  exigência legal.
-                </p>
-                <p>
-                  Se desejar atualizar, corrigir ou solicitar a exclusão de
-                  dados, entre em contato com a equipe da COGNULL pelos canais
-                  do site.
-                </p>
+                {privacyPolicyParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </div>
@@ -648,33 +548,9 @@ const Index = () => {
               </div>
 
               <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
-                <p>
-                  Ao acessar e utilizar o site da COGNULL, você concorda com
-                  estes termos básicos de uso.
-                </p>
-                <p>
-                  O conteúdo do site tem finalidade informativa e comercial. Os
-                  serviços descritos podem ser ajustados, atualizados ou
-                  removidos sem aviso prévio.
-                </p>
-                <p>
-                  O usuário se compromete a não utilizar este site para
-                  atividades ilegais, abusivas, maliciosas ou que possam
-                  comprometer seu funcionamento.
-                </p>
-                <p>
-                  O contato realizado por WhatsApp, formulário ou outros canais
-                  deve fornecer informações verdadeiras para que possamos
-                  atender de forma adequada.
-                </p>
-                <p>
-                  Todo o conteúdo visual, textual e técnico exibido neste site é
-                  de uso exclusivo da COGNULL, salvo indicação em contrário.
-                </p>
-                <p>
-                  A COGNULL pode atualizar estes termos a qualquer momento para
-                  se adequar a mudanças de serviço, operação ou legislação.
-                </p>
+                {termsParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </div>
