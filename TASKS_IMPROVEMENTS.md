@@ -133,6 +133,9 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
   4. Reativar `noUnusedLocals`/`noUnusedParameters` junto com COD-2.
 - **Possíveis impactos**: pode exigir pequenos ajustes de tipagem em `Formulario.tsx` (o cast manual de `error: unknown` já está preparado para isso).
 
+> ✅ Concluído em 2026-07-09
+- **Notas de implementação**: habilitado incrementalmente como sugerido — `strictNullChecks` sozinho não gerou nenhum erro; `noImplicitAny` revelou 1 único erro real (`TS7016` em `Formulario.tsx:66`, o `import * as THREE from "three"` sem tipos — a versão instalada, `three@0.183.2`, não embute `.d.ts` no pacote), corrigido instalando `@types/three@0.183.1` (mesma versão) como devDependency; com isso, ativar `"strict": true` por completo não revelou nenhum erro adicional — a base de código já era, na prática, type-safe o bastante. `tsconfig.json` (raiz) também foi alinhado (tinha os mesmos overrides fracos, embora `"files": []` faça com que ele não compile nada diretamente — mantido por consistência/tooling de editor). `noUnusedLocals`/`noUnusedParameters` foram deliberadamente **mantidos desligados** por enquanto, conforme o passo 4 da própria tarefa determina que isso deve ser feito junto com a **COD-2** (reativação do lint equivalente), para não misturar escopos. Validado com `npx tsc --build --force` (0 erros), `npm run build` e `npm run lint` (bundle e CSS idênticos ao estado anterior — mudança é 100% em tempo de compilação, sem impacto em runtime).
+
 ### COD-2 — Reativar `@typescript-eslint/no-unused-vars`
 - **Descrição**: a regra está explicitamente desligada em `eslint.config.js:23`.
 - **Impacto**: código morto (variáveis, imports não usados) não é detectado automaticamente durante desenvolvimento ou CI.
@@ -721,7 +724,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - ⏳ **FE-2** — `<title>` por rota
 
 ### 🔧 Fase 6 — Refatoração
-- ⏳ **COD-1** — Ativar `strict` mode do TypeScript
+- ✅ **COD-1** — Ativar `strict` mode do TypeScript
 - ⏳ **COD-2** — Reativar `no-unused-vars`
 - ⏳ **COD-3** — Componente de campo de formulário (elimina repetição de classes)
 - ⏳ **COD-4** — Extrair cena Three.js para hook próprio
