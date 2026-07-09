@@ -108,6 +108,11 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
   3. Implementar a11y (ver UX-1) uma única vez dentro do componente.
 - **Possíveis impactos**: nenhuma mudança visual esperada se o CSS for preservado; reduz risco de regressão futura.
 
+> ✅ Concluído em 2026-07-09 — implementado como componente próprio (o `Dialog` do shadcn/ui não era mais uma opção, pois foi removido inteiramente na ARQ-1).
+- **Notas de implementação**: criado `src/components/Modal.tsx`, recebendo `isOpen`, `onClose`, `eyebrow`, `title`, `maxWidth` (`"2xl"` para o modal de contato, `"4xl"` — padrão — para privacidade/termos) e `children`. Os 3 blocos duplicados em `Index.tsx` (contato, privacidade, termos) foram substituídos por `<Modal>`, removendo ~130 linhas de JSX repetido (`Index.tsx` caiu de 604 para 537 linhas). Aproveitei para já resolver a **UX-1** (acessibilidade dos modais) dentro do componente, como o próprio passo 3 desta tarefa sugeria: `role="dialog"`, `aria-modal="true"`, `aria-labelledby` apontando para o `id` do `<h2>` (gerado via `useId`), fechar com `Escape`, foco automático no primeiro elemento focável ao abrir, focus trap (Tab/Shift+Tab não escapam do modal) e retorno do foco ao elemento que abriu o modal ao fechar.
+  - **Bug real encontrado e corrigido durante a verificação**: `tailwind.config.ts` tinha o array `content` apontando só para `index.html`, `main.tsx`, `App.tsx` e `src/pages/**/*.{ts,tsx}` — nunca incluía `src/components/**`. Isso é resquício de antes da ARQ-1 (quando os componentes shadcn/ui ficavam em `src/components/ui/`, mas eram consumidos só via imports dentro de `pages/`, então o purge nunca doeu). Como o novo `Modal.tsx` é o primeiro arquivo em `src/components/` desde a ARQ-1, o Tailwind estava fazendo o purge de todas as classes do modal (`fixed`, `inset-0`, `z-[80]`, etc.) do CSS final — o overlay renderizava sem posicionamento, ficando atrás da navbar. Corrigido adicionando `"./src/components/**/*.{ts,tsx}"` ao `content`. Esse bug não teria aparecido em `npm run build`/`npm run lint` (ambos passavam "limpo" mesmo com o bug) — só foi pego testando de fato no navegador via Playwright (clique fora do modal não fechava, e o overlay não cobria a tela).
+  - Validado com `npm run build` (CSS de volta a 28.64 kB, idêntico ao estado pré-bug), `npm run lint` (limpo) e Playwright: `role`/`aria-modal`/`aria-labelledby` corretos, foco vai para o botão "Fechar" ao abrir, `Escape` fecha e devolve o foco ao botão que abriu (`CONTATO`), clique no overlay fecha, e screenshots dos 3 modais confirmam renderização pixel-idêntica à anterior.
+
 ---
 
 ## 2. Categoria: Código
@@ -401,6 +406,8 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - **Passos para implementação**: ver ARQ-5, adicionar a lógica de foco/teclado dentro do componente compartilhado.
 - **Possíveis impactos**: nenhuma mudança visual; mudança de comportamento (Esc fecha, foco é gerenciado) precisa ser testada manualmente com teclado.
 
+> ✅ Concluído em 2026-07-09 — implementado junto com a ARQ-5, dentro de `src/components/Modal.tsx` (ver notas de implementação na ARQ-5).
+
 ### UX-2 — Adicionar `aria-expanded` ao botão de menu mobile
 - **Descrição**: o botão de menu em `Index.tsx:153-164` alterna `isMobileMenuOpen` mas não expõe `aria-expanded`/`aria-controls` para leitores de tela.
 - **Impacto**: leitores de tela não anunciam se o menu está aberto ou fechado.
@@ -688,7 +695,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - ✅ **ARQ-1** — Remover/decidir sobre shadcn/ui e dependências não usadas
 - ✅ **ARQ-2** — Extrair dados hardcoded para `src/data/`
 - ✅ **ARQ-4** — Resolver dark mode fantasma
-- ⏳ **ARQ-5** — Criar componente `Modal` reutilizável
+- ✅ **ARQ-5** — Criar componente `Modal` reutilizável
 - ⏳ **PERF-5** — Unificar gerenciador de pacotes (lockfiles)
 - ⏳ **DEVOPS-1** — Pipeline de CI (lint + typecheck + build)
 - ⏳ **DEVOPS-2** — Script de `typecheck`
@@ -705,7 +712,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - ⏳ **BACK-1** — Avaliar backend leve para não perder leads
 
 ### 🎨 Fase 5 — UX/UI
-- ⏳ **UX-1** — Acessibilidade dos modais (WCAG)
+- ✅ **UX-1** — Acessibilidade dos modais (WCAG)
 - ⏳ **UX-2** — `aria-expanded` no menu mobile
 - ⏳ **UX-3** — Skip link
 - ⏳ **UX-4** — Dimensões explícitas de imagens (CLS)

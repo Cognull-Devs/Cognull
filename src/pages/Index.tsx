@@ -1,5 +1,6 @@
 import { useState, type CSSProperties } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Modal } from "@/components/Modal";
 import { founders } from "@/data/founders";
 import { privacyPolicyParagraphs, termsParagraphs } from "@/data/legal";
 import { services } from "@/data/services";
@@ -422,139 +423,71 @@ const Index = () => {
           </div>
         </section>
 
-        {isContactModalOpen && (
-          <div
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
-            onClick={() => setIsContactModalOpen(false)}
-          >
-            <div
-              className="w-full max-w-2xl rounded-3xl border border-primary/40 bg-teal-900/[0.96] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="mb-8 flex items-center justify-between gap-4">
-                <div>
-                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-brand">
-                    Canais de Contato
-                  </span>
-                  <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
-                    Escolha um fundador
-                  </h2>
+        <Modal
+          eyebrow="Canais de Contato"
+          isOpen={isContactModalOpen}
+          maxWidth="2xl"
+          onClose={() => setIsContactModalOpen(false)}
+          title="Escolha um fundador"
+        >
+          <div className="space-y-4">
+            {founders.map((founder) => (
+              <a
+                key={founder.nome}
+                href={`https://wa.me/${founder.whatsapp}?text=${encodeURIComponent(`Olá, ${founder.nome}! Gostaria de falar com a Cognull.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-brand/5 p-5 transition-none hover:border-brand hover:bg-brand/15 hover:shadow-lg md:p-6"
+                onClick={() => setIsContactModalOpen(false)}
+              >
+                <div className="flex min-w-0 items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand text-black md:h-14 md:w-14">
+                    <WhatsApp className="h-6 w-6 md:h-7 md:w-7" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="truncate font-headline text-lg font-bold text-white md:text-xl">
+                      {founder.nome}
+                    </h3>
+                    <p className="text-sm text-white/70">{founder.cargo}</p>
+                  </div>
                 </div>
-                <button
-                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
-                  onClick={() => setIsContactModalOpen(false)}
-                  type="button"
-                >
-                  Fechar
-                </button>
-              </div>
-
-              <div className="space-y-4">
-                {founders.map((founder) => (
-                  <a
-                    key={founder.nome}
-                    href={`https://wa.me/${founder.whatsapp}?text=${encodeURIComponent(`Olá, ${founder.nome}! Gostaria de falar com a Cognull.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-brand/5 p-5 transition-none hover:border-brand hover:bg-brand/15 hover:shadow-lg md:p-6"
-                    onClick={() => setIsContactModalOpen(false)}
-                  >
-                    <div className="flex min-w-0 items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand text-black md:h-14 md:w-14">
-                        <WhatsApp className="h-6 w-6 md:h-7 md:w-7" />
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="truncate font-headline text-lg font-bold text-white md:text-xl">
-                          {founder.nome}
-                        </h3>
-                        <p className="text-sm text-white/70">{founder.cargo}</p>
-                      </div>
-                    </div>
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand text-brand transition-colors group-hover:bg-brand group-hover:text-black">
-                      →
-                    </div>
-                  </a>
-                ))}
-              </div>
-
-              <p className="mt-8 text-center text-xs text-white/50">
-                💬 Clique em um fundador para abrir o WhatsApp
-              </p>
-            </div>
-          </div>
-        )}
-
-        {isPrivacyModalOpen && (
-          <div
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
-            onClick={() => setIsPrivacyModalOpen(false)}
-          >
-            <div
-              className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-teal-900/[0.96] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="mb-8 flex items-center justify-between gap-4">
-                <div>
-                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-brand">
-                    Privacidade
-                  </span>
-                  <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
-                    Política de privacidade
-                  </h2>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand text-brand transition-colors group-hover:bg-brand group-hover:text-black">
+                  →
                 </div>
-                <button
-                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
-                  onClick={() => setIsPrivacyModalOpen(false)}
-                  type="button"
-                >
-                  Fechar
-                </button>
-              </div>
-
-              <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
-                {privacyPolicyParagraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
+              </a>
+            ))}
           </div>
-        )}
 
-        {isTermsModalOpen && (
-          <div
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/55 px-4"
-            onClick={() => setIsTermsModalOpen(false)}
-          >
-            <div
-              className="w-full max-w-4xl rounded-3xl border border-primary/40 bg-teal-900/[0.96] p-6 shadow-2xl backdrop-blur-sm md:p-8 md:backdrop-blur-md"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="mb-8 flex items-center justify-between gap-4">
-                <div>
-                  <span className="font-label text-[9px] font-bold uppercase tracking-[0.35em] text-brand">
-                    Termos
-                  </span>
-                  <h2 className="mt-3 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl">
-                    Termos de uso
-                  </h2>
-                </div>
-                <button
-                  className="rounded-full border border-primary/40 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-white transition-colors hover:border-brand hover:text-brand-light"
-                  onClick={() => setIsTermsModalOpen(false)}
-                  type="button"
-                >
-                  Fechar
-                </button>
-              </div>
+          <p className="mt-8 text-center text-xs text-white/50">
+            💬 Clique em um fundador para abrir o WhatsApp
+          </p>
+        </Modal>
 
-              <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
-                {termsParagraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
+        <Modal
+          eyebrow="Privacidade"
+          isOpen={isPrivacyModalOpen}
+          onClose={() => setIsPrivacyModalOpen(false)}
+          title="Política de privacidade"
+        >
+          <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
+            {privacyPolicyParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
-        )}
+        </Modal>
+
+        <Modal
+          eyebrow="Termos"
+          isOpen={isTermsModalOpen}
+          onClose={() => setIsTermsModalOpen(false)}
+          title="Termos de uso"
+        >
+          <div className="space-y-5 text-sm leading-relaxed text-on-surface-variant md:text-base">
+            {termsParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </Modal>
       </main>
       <footer className="w-full border-t border-black/5 bg-transparent px-4 py-8 sm:px-6 md:px-16">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 text-left md:flex-row md:items-center md:text-center">

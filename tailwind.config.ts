@@ -6,6 +6,7 @@ export default {
     "./src/main.tsx",
     "./src/App.tsx",
     "./src/pages/**/*.{ts,tsx}",
+    "./src/components/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
