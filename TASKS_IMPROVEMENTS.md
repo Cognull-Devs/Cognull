@@ -90,6 +90,9 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - **Passos para implementação**: remover a linha em `main.tsx:5`, remover `darkMode` do config, remover dependência, rodar `npm run build` para confirmar que nada dependia disso.
 - **Possíveis impactos**: nenhum, já que nada consome a classe `.dark` hoje.
 
+> ✅ Concluído em 2026-07-09
+- **Notas de implementação**: `next-themes` já havia sido removido do `package.json` durante a ARQ-1 (era uma dependência do shadcn/ui descartado), então restava apenas código morto em dois arquivos: removida a linha `document.documentElement.classList.add("dark")` de `main.tsx` e a chave `darkMode: ["class"]` de `tailwind.config.ts`. Confirmado via grep que não existe nenhum bloco `.dark { ... }` no CSS nem classe `dark:` em qualquer JSX do projeto — a remoção não tem efeito visual algum. `npm run build` (CSS permanece em 28.64 kB, como esperado) e `npm run lint` validados sem erros.
+
 ### ARQ-5 — Criar componente `Modal`/`Dialog` reutilizável
 - **Descrição**: o padrão de modal (overlay fixo + `onClick` para fechar + `stopPropagation` no conteúdo + botão "Fechar") está duplicado quase identicamente 3 vezes em `Index.tsx` (contato, privacidade, termos — linhas 487-681).
 - **Impacto**: qualquer correção de acessibilidade (ver UX-1) precisa ser replicada 3x; alto risco de divergência entre os modais ao longo do tempo.
@@ -684,7 +687,7 @@ Esses pontos **não** precisam de tarefa corretiva — apenas não devem ser que
 - ⏳ **TEST-1** — Configurar Vitest + Testing Library *(fundação antes de refatorar)*
 - ✅ **ARQ-1** — Remover/decidir sobre shadcn/ui e dependências não usadas
 - ✅ **ARQ-2** — Extrair dados hardcoded para `src/data/`
-- ⏳ **ARQ-4** — Resolver dark mode fantasma
+- ✅ **ARQ-4** — Resolver dark mode fantasma
 - ⏳ **ARQ-5** — Criar componente `Modal` reutilizável
 - ⏳ **PERF-5** — Unificar gerenciador de pacotes (lockfiles)
 - ⏳ **DEVOPS-1** — Pipeline de CI (lint + typecheck + build)
